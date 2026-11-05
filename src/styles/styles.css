@@ -1,24 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
 
+/* ========================================================
+   Palette officielle KINEORA (kineora_colors_2.pdf)
+   ======================================================== */
 :root { 
-    font-family: 'DM Sans', Inter, ui-sans-serif, system-ui, sans-serif; 
-    color: #20283c; 
+    /* Couleurs principales */
+    --deep: #252A3D;
+    --royal: #4478C4;
+    --marine: #2F5FA8;
+    --sky: #6E9BD8;
+    --rose: #4B0082; /* violet */
+
+    /* Surfaces & Arrière-plans */
+    --bg: #E7F1FB;
+    --surface: #FFFFFF;
+    --surface2: #F0ECF7;
+    --rose-bg: #EDE6F5;
+
+    /* Bordures, pistes et textes secondaires */
+    --border: #DCD5E8;
+    --track: #E3EBF7;
+    --text: #252A3D;
+    --muted: #6F7482;
+    --ring: rgba(68, 120, 196, 0.18);
+
+    /* Dégradés officiels à 135° */
+    --grad-blue: linear-gradient(135deg, #252A3D 0%, #4478C4 100%);
+    --grad-blue-rose: linear-gradient(135deg, #4478C4 0%, #4B0082 100%);
+    --grad-rose: linear-gradient(135deg, #4B0082 0%, #5E1F96 100%);
+    --grad-card: linear-gradient(135deg, #6E9BD8 0%, #4478C4 55%, #2F5FA8 100%);
+
+    /* Typographie globale */
+    font-family: 'DM Sans', 'Segoe UI', Tahoma, Inter, ui-sans-serif, system-ui, sans-serif; 
+    color: var(--text); 
+    color-scheme: light;
     font-synthesis: none; 
     text-rendering: optimizeLegibility;
- }
+}
+
+/* ========================================================
+   Mode Sombre (Dark Mode) Officiel
+   ======================================================== */
+body.dark-mode,
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --deep: #D8D8D8;
+    --bg: #0B0D14;
+    --surface: #151824;
+    --surface2: #232738;
+    --text: #D8D8D8;
+    --muted: #98A0B3;
+    --border: #2A2F42;
+    --track: #232738;
+    --rose: #C9A6F0;
+    --rose-bg: rgba(201, 166, 240, 0.16);
+    --ring: rgba(110, 155, 216, 0.28);
+}
 
 * { 
     box-sizing: border-box;
- }
+}
+
 body { 
     margin: 0; 
     min-width: 320px; 
     min-height: 100vh; 
+    background: var(--bg);
+    color: var(--text);
 }
+
 button, input { 
     font: inherit; 
 }
 
+/* ========================================================
+   Page Login & Structure
+   ======================================================== */
 .page { 
     min-height: 100vh; 
     padding: 22px 16px 26px;
@@ -27,8 +84,8 @@ button, input {
     align-items: flex-start; 
     position: relative; 
     overflow: hidden;
-    background: #e7f2fd;
-     }
+    background: var(--bg);
+}
 
 .page::before, .page::after { 
     content: ''; 
@@ -39,108 +96,116 @@ button, input {
     filter: blur(65px); 
     opacity: .4; 
     pointer-events: none;
- }
+}
+
 .page::before { 
-    background: #d6eafd; 
+    background: var(--track); 
     left: -170px; 
     top: 5%; 
 }
 
 .page::after { 
-    background: #e6d9f7; 
+    background: var(--surface2); 
     right: -200px;
     bottom: -180px;
- }
+}
 
 .login-column {
-     width: min(100%, 360px); 
-     display: flex; 
-     flex-direction: column; 
-     align-items: center; 
-     position: relative; 
-     z-index: 1; 
-    }
+    width: min(100%, 360px); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    position: relative; 
+    z-index: 1; 
+}
 
+/* ========================================================
+   Brand & Logo KINEORA
+   ======================================================== */
 .brand {
-     text-align: center;
-     height: 105px; 
-     display: flex; 
-     flex-direction: column; 
-     align-items: center;
-     }
+    text-align: center;
+    height: 105px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
 
 .brand-mark {
-     position: relative; 
-     width: 48px; 
-     height: 43px; 
-     margin-bottom: 1px; 
-    }
+    position: relative; 
+    width: 48px; 
+    height: 43px; 
+    margin-bottom: 1px; 
+}
 
 .mark-head { 
     position: absolute; 
     width: 9px;
     height: 9px; 
     border-radius: 50%;
-    background: #222a41;
+    background: var(--deep);
     left: 26px; 
     top: 1px; 
 }
 
 .mark-body {
-     position: absolute; 
-     width: 7px;
-     height: 27px;
-     background: #222a41; 
-     transform: rotate(35deg); 
-     left: 23px; 
-     top: 9px;
-     border-radius: 7px; 
-    }
+    position: absolute; 
+    width: 7px;
+    height: 27px;
+    background: var(--deep); 
+    transform: rotate(35deg); 
+    left: 23px; 
+    top: 9px;
+    border-radius: 7px; 
+}
 
 .mark-arm {
-     position: absolute; 
-     width: 27px; 
-     height: 6px; 
-     background: #7224bc;
-     transform: rotate(-25deg); 
-     left: 9px; 
-     top: 19px;
-     border-radius: 5px; 
-    }
+    position: absolute; 
+    width: 27px; 
+    height: 6px; 
+    background: var(--rose);
+    transform: rotate(-25deg); 
+    left: 9px; 
+    top: 19px;
+    border-radius: 5px; 
+}
 
 .mark-leg { 
     position: absolute;
     width: 6px;
     height: 22px;
     top: 22px;
-    background: #4381ca;
+    background: var(--royal);
     border-radius: 6px; 
 }
 
 .mark-leg.left { 
     left: 19px;
     transform: rotate(-9deg);
- }
+}
 
- .mark-leg.right {
-     left: 30px;
-     transform: rotate(22deg);
-     }
+.mark-leg.right {
+    left: 30px;
+    transform: rotate(22deg);
+}
 
 .brand-name { 
     font-size: 19px; 
     font-weight: 800; 
     letter-spacing: 3px; 
     line-height: 1.1;
- }
+    color: var(--deep);
+}
 
- .tagline {
-     font-size: 8px; 
-     color: #4867a1; 
-     margin-top: 5px; 
-     letter-spacing: .1px; 
-    }
+.tagline {
+    font-size: 8px; 
+    color: var(--royal); 
+    margin-top: 5px; 
+    letter-spacing: .1px; 
+}
 
+/* ========================================================
+   Language Picker & Role Switcher
+   ======================================================== */
 .language-picker { 
     position: absolute; 
     z-index: 2; 
@@ -150,8 +215,9 @@ button, input {
     padding: 3px; 
     gap: 2px; 
     border-radius: 20px; 
-    background: rgba(255,255,255,.82); 
-    box-shadow: 0 3px 15px #5269831c; 
+    background: var(--surface); 
+    box-shadow: 0 3px 15px rgba(37, 42, 61, 0.08); 
+    border: 1px solid var(--border);
 }
 
 .language-picker button { 
@@ -162,10 +228,17 @@ button, input {
     height: 23px; 
     cursor: pointer; 
     font-size: 12px; 
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s, color .15s;
 }
 
 .language-picker button.selected { 
-    background: #ece9f5; 
+    background: var(--surface2); 
+    color: var(--royal);
+    font-weight: 700;
 }
 
 .role-switch { 
@@ -180,29 +253,33 @@ button, input {
     gap: 5px; 
     border: 1px solid transparent; 
     border-radius: 20px; 
-    background: #e9e5f0; 
-    color: #555c6d; 
+    background: var(--surface2); 
+    color: var(--muted); 
     padding: 8px 13px; 
     font-size: 10px; 
     cursor: pointer; 
 }
 
 .role-switch button.active { 
-    background: #fff; 
-    color: #263047; 
-    box-shadow: 0 3px 10px #60748c16; 
+    background: var(--surface); 
+    color: var(--deep); 
+    box-shadow: 0 3px 10px rgba(37, 42, 61, 0.08); 
+    border-color: var(--border);
 }
 
 .role-switch button span { 
     font-size: 10px; 
 }
 
+/* ========================================================
+   Cards & Formulaires
+   ======================================================== */
 .card { 
     width: 100%; 
-    background: rgba(255,255,255,.97); 
-    border: 1px solid #d9e1ef; 
+    background: var(--surface); 
+    border: 1px solid var(--border); 
     border-radius: 20px; 
-    box-shadow: 0 8px 20px rgba(50,69,98,.11); 
+    box-shadow: 0 8px 20px rgba(37, 42, 61, 0.07); 
 }
 
 .sign-in-card { 
@@ -218,16 +295,14 @@ button, input {
     height: 42px; 
     padding: 0 12px; 
     margin-bottom: 7px; 
-    border: 1px solid #dfe3ec; 
+    border: 1px solid var(--border); 
     border-radius: 13px; 
-    color: #737d92; 
-
+    color: var(--muted); 
 }
 
 .input-wrap:focus-within { 
-    border-color: #6691d1; 
-    box-shadow: 0 0 0 3px #6997d31c; 
-
+    border-color: var(--royal); 
+    box-shadow: 0 0 0 3px var(--ring); 
 }
 
 .input-wrap input { 
@@ -236,19 +311,19 @@ button, input {
     border: 0; 
     outline: 0; 
     background: transparent; 
-    color: #222c41; 
+    color: var(--text); 
     font-size: 11px; 
 }
 
 .input-wrap input::placeholder { 
-    color: #7c8596; 
+    color: var(--muted); 
 }
 
 .eye-button { 
     display: flex; 
     padding: 2px; 
     border: 0; 
-    color: #707a8c; 
+    color: var(--muted); 
     background: transparent; 
     cursor: pointer; 
 }
@@ -257,7 +332,7 @@ button, input {
     align-self: flex-end; 
     border: 0; 
     background: none; 
-    color: #68758a; 
+    color: var(--muted); 
     font-size: 9px; 
     padding: 2px 2px 12px; 
     cursor: pointer; 
@@ -267,12 +342,12 @@ button, input {
     height: 42px; 
     border: 0; 
     border-radius: 24px; 
-    color: white; 
+    color: #ffffff; 
     font-weight: 600; 
     font-size: 11px; 
     cursor: pointer; 
-    background: linear-gradient(105deg,#252e48,#477fc9); 
-    box-shadow: 0 5px 11px #314b6b3b; 
+    background: var(--grad-blue); 
+    box-shadow: 0 5px 11px rgba(37, 42, 61, 0.2); 
 }
 
 .submit-button:hover { 
@@ -282,13 +357,12 @@ button, input {
 .signup-line { 
     margin: 12px 0 0; 
     text-align: center; 
-    color: #697488; 
+    color: var(--muted); 
     font-size: 9px; 
-
 }
 
 .signup-line button { 
-    color: #6423ae; 
+    color: var(--rose); 
     background: transparent; 
     border: 0; 
     padding: 0; 
@@ -299,11 +373,13 @@ button, input {
 .notice { 
     margin: 10px 2px 0; 
     text-align: center; 
-    color: #4268a4; 
+    color: var(--royal); 
     font-size: 9px; 
 }
 
-
+/* ========================================================
+   Demo Accounts & Values
+   ======================================================== */
 .demo-card { 
     margin-top: 12px; 
     padding: 15px 13px 13px; 
@@ -313,6 +389,7 @@ button, input {
     font-size: 10px; 
     margin: 0 0 10px; 
     font-weight: 700; 
+    color: var(--text);
 }
 
 .demo-list { 
@@ -331,14 +408,14 @@ button, input {
     min-height: 46px; 
     border: 0; 
     border-radius: 12px; 
-    background: #f0edf7; 
+    background: var(--surface2); 
     cursor: pointer; 
     transition: transform .15s, background .15s; 
 }
 
 .demo-account:hover { 
-    background: #e8e2f3;
-     transform: translateY(-1px); 
+    background: var(--rose-bg); 
+    transform: translateY(-1px); 
 }
 
 .avatar { 
@@ -348,7 +425,8 @@ button, input {
     display: grid; 
     place-items: center; 
     border-radius: 50%; 
-    background: #fff; 
+    background: var(--surface); 
+    color: var(--royal);
     font-size: 15px; 
 }
 
@@ -363,16 +441,15 @@ button, input {
     overflow: hidden; 
     text-overflow: ellipsis; 
     white-space: nowrap; 
-    color: #34374a; 
+    color: var(--text); 
     font-size: 9px; 
     font-weight: 700; 
 }
 
 .account-copy small { 
-    color: #74798b; 
+    color: var(--muted); 
     font-size: 8px; 
 }
-
 
 .values { 
     width: 100%; 
@@ -389,9 +466,10 @@ button, input {
     gap: 4px; 
     padding: 7px 10px; 
     border-radius: 20px; 
-    background: #fff; 
-    color: #39465e; 
-    box-shadow: 0 3px 9px #4c65801a; 
+    background: var(--surface); 
+    color: var(--text); 
+    box-shadow: 0 3px 9px rgba(37, 42, 61, 0.08); 
+    border: 1px solid var(--border);
     font-size: 9px; 
     font-weight: 600; 
 }
@@ -399,373 +477,657 @@ button, input {
 .values svg { 
     width: 11px; 
     height: 11px; 
-    color: #4885d4; 
+    color: var(--royal); 
     stroke-width: 2.5; 
 }
 
 .values span:nth-child(4) svg { 
-    color: #8a43c1; 
+    color: var(--rose); 
 }
 
-
-.rtl { 
+/* ========================================================
+   RTL (Right to Left)
+   ======================================================== */
+.rtl,
+html[dir="rtl"] { 
     direction: rtl; 
 }
 
-.rtl .account-copy, .rtl .demo-account { 
+.rtl .account-copy, .rtl .demo-account,
+html[dir="rtl"] .account-copy, html[dir="rtl"] .demo-account { 
     text-align: right; 
 }
 
-.rtl .forgot { 
+.rtl .forgot,
+html[dir="rtl"] .forgot { 
     align-self: flex-start; 
-
 }
 
+html[dir="rtl"] .language-picker {
+    right: auto;
+    left: 10px;
+}
 
+.rtl .patient-card p strong,
+html[dir="rtl"] .patient-card p strong,
+.rtl .date-box strong,
+html[dir="rtl"] .date-box strong {
+    unicode-bidi: isolate;
+}
+
+/* ========================================================
+   Media Queries Responsive
+   ======================================================== */
 @media (min-height: 820px) {
-     .page { 
+    .page { 
         align-items: center;
-         padding-top: 38px; 
-         padding-bottom: 38px; 
-        } 
-    }
-@media (max-width: 420px) {
-     .page {
-         padding: 38px 18px 20px; 
-        }
-        .language-picker { 
-            top: 7px; right: 8px; 
-        }
-        .brand {
-             height: 94px; 
-            }
-            .role-switch button {
-                 font-size: 9px; padding: 8px 10px;
-                 }
-                 .demo-card { 
-                    padding: 13px 11px 11px; 
-                }
-                .demo-account { 
-                    min-height: 43px; 
-                } 
-            }
-body.dark-mode .page { 
-    background: #1d2432;
- }
-  body.dark-mode .card {
-     background: #293246;
-     border-color: #3a4861; 
-     color: #eff3fa; 
+        padding-top: 38px; 
+        padding-bottom: 38px; 
     } 
-    body.dark-mode .demo-account { 
-        background: #353d52; 
-    }
-     body.dark-mode .account-copy strong, body.dark-mode .demo-card h2 { 
-        color: #f0f2f8; 
-    }
+}
 
-    .welcome-card {
-  margin: 24px auto;
-  max-width: 1100px;
-  padding: 22px 28px;
-  border-radius: 18px;
-  background: linear-gradient(110deg, #5488d0, #386ab2);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+@media (max-width: 420px) {
+    .page {
+        padding: 38px 18px 20px; 
+    }
+    .language-picker { 
+        top: 7px; right: 8px; 
+    }
+    .brand {
+        height: 94px; 
+    }
+    .role-switch button {
+        font-size: 9px; 
+        padding: 8px 10px;
+    }
+    .demo-card { 
+        padding: 13px 11px 11px; 
+    }
+    .demo-account { 
+        min-height: 43px; 
+    } 
+}
+
+/* ========================================================
+   Dashboard Médecin - Sections
+   ======================================================== */
+.dashboard {
+    min-height: 100vh;
+    padding: 16px;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 18px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(37, 42, 61, 0.04);
+}
+
+.topbar strong {
+    color: var(--deep);
+    letter-spacing: 1.5px;
+}
+
+.topbar nav,
+.topbar-tools {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.topbar button {
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--surface2);
+    color: var(--text);
+    cursor: pointer;
+    transition: background .15s, color .15s;
+}
+
+.topbar button:hover {
+    background: var(--rose-bg);
+    color: var(--royal);
+}
+
+.topbar button.active {
+    background: var(--royal);
+    color: #ffffff;
+}
+
+.welcome-card {
+    margin: 24px auto;
+    max-width: 1100px;
+    padding: 22px 28px;
+    border-radius: 18px;
+    background: var(--grad-card);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .welcome-card h2 {
-  margin: 0 0 8px;
-  font-size: 18px;
+    margin: 0 0 8px;
+    font-size: 18px;
 }
 
 .welcome-card p {
-  margin: 0;
-  font-size: 13px;
-  opacity: 0.85;
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.9;
 }
 
 .welcome-card button {
-  border: 0;
-  border-radius: 20px;
-  padding: 11px 18px;
-  background: white;
-  color: #365f9e;
-  cursor: pointer;
+    border: 0;
+    border-radius: 20px;
+    padding: 11px 18px;
+    background: var(--surface);
+    color: var(--royal);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(37, 42, 61, 0.1);
 }
 
+.welcome-card button:hover {
+    filter: brightness(0.97);
+}
+
+/* ========================================================
+   Statistiques
+   ======================================================== */
 .stats {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
 }
 
 .stats article {
-  background: white;
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 4px 14px #304a7014;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 4px 14px rgba(37, 42, 61, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .stats strong {
-  color: #283a5a;
-  font-size: 20px;
+    color: var(--deep);
+    font-size: 20px;
 }
 
 .stats span {
-  color: #788398;
-  font-size: 12px;
+    color: var(--muted);
+    font-size: 12px;
 }
 
 @media (max-width: 600px) {
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.follow-up {
-  max-width: 1100px;
-  margin: 26px auto;
+/* ========================================================
+   Section Aujourd'hui (Today / Rendez-vous)
+   ======================================================== */
+.today {
+    max-width: 1100px;
+    margin: 26px auto;
 }
 
 .section-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
 }
 
 .section-title h3 {
-  margin: 0;
-  font-size: 15px;
+    margin: 0;
+    font-size: 15px;
+    color: var(--text);
 }
 
 .section-title button {
-  border: 0;
-  background: transparent;
-  color: #477bc2;
-  cursor: pointer;
-}
-
-.patient-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.patient-card {
-  padding: 16px;
-  border-radius: 16px;
-  background: white;
-  box-shadow: 0 4px 14px #304a7014;
-}
-
-.patient-heading {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.patient-avatar {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: #477bc2;
-  background: #f0edf7;
-}
-
-.patient-heading div {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.patient-heading small,
-.patient-card p {
-  color: #788398;
-  font-size: 11px;
-}
-
-.status {
-  padding: 6px 9px;
-  border-radius: 14px;
-  background: #f0edf7;
-  color: #70559b;
-  font-size: 10px;
-}
-
-.patient-card p {
-  display: flex;
-  justify-content: space-between;
-  margin: 16px 0 7px;
-}
-
-.progress {
-  height: 6px;
-  overflow: hidden;
-  border-radius: 8px;
-  background: #e7eaf1;
-}
-
-.progress span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #4c83ce, #7027ae);
-}
-
-.details {
-  width: 100%;
-  margin-top: 12px;
-  padding: 8px;
-  border: 0;
-  border-radius: 12px;
-  background: #f0edf7;
-  color: #477bc2;
-  cursor: pointer;
-}
-
-@media (max-width: 650px) {
-  .patient-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-.today {
-  max-width: 1100px;
-  margin: 26px auto;
+    border: 0;
+    background: transparent;
+    color: var(--royal);
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .appointment {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 10px;
-  padding: 12px 16px;
-  border-radius: 14px;
-  background: white;
-  box-shadow: 0 4px 14px #304a7014;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 14px rgba(37, 42, 61, 0.05);
 }
 
 .date-box {
-  width: 38px;
-  height: 38px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: #f0edf7;
-  color: #477bc2;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--marine);
 }
 
 .date-box strong { font-size: 14px; }
 .date-box small { font-size: 9px; }
 
 .appointment-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text);
 }
 
 .appointment-info small {
-  color: #788398;
-  font-size: 10px;
+    color: var(--muted);
+    font-size: 10px;
 }
 
 .appointment-status {
-  padding: 6px 10px;
-  border-radius: 14px;
-  font-size: 10px;
+    padding: 6px 10px;
+    border-radius: 14px;
+    font-size: 10px;
+    font-weight: 600;
 }
 
-.confirmed { background: #e8eefb; color: #477bc2; }
-.pending { background: #f0edf7; color: #7953a5; }
-
-.dashboard {
-  min-height: 100vh;
-  padding: 16px;
-  color: #20283c;
-  background: #e7f2fd;
+.confirmed { 
+    background: var(--track); 
+    color: var(--marine); 
 }
 
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 12px 18px;
-  border-radius: 16px;
-  background: white;
+.pending { 
+    background: var(--rose-bg); 
+    color: var(--rose); 
 }
 
-.topbar nav,
-.topbar-tools {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* ========================================================
+   Section Suivi des Patients (Follow-up)
+   ======================================================== */
+.follow-up {
+    max-width: 1100px;
+    margin: 26px auto;
 }
 
-.topbar button {
-  padding: 8px 10px;
-  border: 0;
-  border-radius: 12px;
-  background: #f0edf7;
-  color: inherit;
-  cursor: pointer;
+.patient-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
 }
 
+.patient-card {
+    padding: 16px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 14px rgba(37, 42, 61, 0.05);
+}
+
+.patient-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.patient-avatar {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--marine);
+    background: var(--surface2);
+    font-weight: 700;
+}
+
+.patient-heading div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.patient-heading small,
+.patient-card p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.status {
+    padding: 6px 9px;
+    border-radius: 14px;
+    background: var(--rose-bg);
+    color: var(--rose);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.patient-card p {
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0 7px;
+}
+
+.progress {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--track);
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--grad-blue-rose);
+}
+
+.details {
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--surface2);
+    color: var(--royal);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.details:hover {
+    background: var(--rose-bg);
+}
+
+@media (max-width: 650px) {
+    .patient-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================================
+   Harmonisation Dark Mode spécifique
+   ======================================================== */
+html[data-theme="dark"],
 body.dark-mode {
-  background: #161d2a;
-  color: #edf2fc;
+    background: var(--bg);
+    color: var(--text);
 }
 
+html[data-theme="dark"] .page,
+html[data-theme="dark"] .dashboard,
 body.dark-mode .page,
 body.dark-mode .dashboard {
-  color: #edf2fc;
-  background: #161d2a;
+    color: var(--text);
+    background: var(--bg);
 }
 
+/* Lueur d'ambiance en Dark Mode */
+html[data-theme="dark"] .page::before,
+body.dark-mode .page::before { 
+    background: rgba(68, 120, 196, 0.12);
+}
+
+html[data-theme="dark"] .page::after,
+body.dark-mode .page::after { 
+    background: rgba(201, 166, 240, 0.08);
+}
+
+html[data-theme="dark"] .topbar,
+html[data-theme="dark"] .stats article,
+html[data-theme="dark"] .appointment,
+html[data-theme="dark"] .patient-card,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .values span,
+html[data-theme="dark"] .language-picker,
 body.dark-mode .topbar,
 body.dark-mode .stats article,
 body.dark-mode .appointment,
 body.dark-mode .patient-card,
+body.dark-mode .card,
+body.dark-mode .values span,
+body.dark-mode .language-picker {
+    color: var(--text);
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .card,
 body.dark-mode .card {
-  color: #edf2fc;
-  background: #252f42;
-  border-color: #3a4861;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-body.dark-mode .topbar button,
+/* Remplissage automatique (Autofill Chrome / Edge / Safari) */
+html[data-theme="dark"] input:-webkit-autofill,
+html[data-theme="dark"] input:-webkit-autofill:hover,
+html[data-theme="dark"] input:-webkit-autofill:focus,
+body.dark-mode input:-webkit-autofill,
+body.dark-mode input:-webkit-autofill:hover,
+body.dark-mode input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text);
+    -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset;
+    box-shadow: 0 0 0px 1000px var(--surface) inset;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: var(--text);
+}
+
+html[data-theme="dark"] .topbar button:not(.active),
+html[data-theme="dark"] .patient-avatar,
+html[data-theme="dark"] .details,
+html[data-theme="dark"] .date-box,
+html[data-theme="dark"] .demo-account,
+body.dark-mode .topbar button:not(.active),
 body.dark-mode .patient-avatar,
-body.dark-mode .status,
 body.dark-mode .details,
-body.dark-mode .date-box {
-  color: #d9e5fb;
-  background: #34415a;
+body.dark-mode .date-box,
+body.dark-mode .demo-account {
+    color: var(--text);
+    background: var(--surface2);
 }
 
+/* Rôles Doctor / Parent en Dark Mode */
+html[data-theme="dark"] .role-switch button:not(.active),
+body.dark-mode .role-switch button:not(.active) {
+    color: var(--muted);
+    background: var(--surface2);
+    border-color: transparent;
+}
+
+html[data-theme="dark"] .role-switch button:not(.active):hover,
+body.dark-mode .role-switch button:not(.active):hover {
+    color: var(--text);
+}
+
+html[data-theme="dark"] .role-switch button.active,
+body.dark-mode .role-switch button.active {
+    background: #252e42;
+    color: #ffffff;
+    border-color: var(--royal);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* Boutons de langues et Topbar en Dark Mode */
+html[data-theme="dark"] .language-picker button,
+body.dark-mode .language-picker button {
+    color: var(--text);
+}
+
+html[data-theme="dark"] .language-picker button.selected,
+body.dark-mode .language-picker button.selected {
+    background: var(--surface2);
+    color: var(--sky);
+}
+
+html[data-theme="dark"] .topbar-tools button,
+body.dark-mode .topbar-tools button {
+    color: var(--text);
+}
+
+html[data-theme="dark"] .topbar button.active,
+body.dark-mode .topbar button.active {
+    background: var(--royal);
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .topbar button:not(.active):hover,
+body.dark-mode .topbar button:not(.active):hover {
+    color: #ffffff;
+    background: rgba(110, 155, 216, 0.18);
+}
+
+/* Barre de progression lisible en Dark Mode */
+html[data-theme="dark"] .progress span,
+body.dark-mode .progress span {
+    background: linear-gradient(90deg, var(--royal) 0%, var(--rose) 100%);
+}
+
+/* Textes secondaires, liens et notices en Dark Mode */
+html[data-theme="dark"] .tagline,
+body.dark-mode .tagline {
+    color: var(--sky);
+}
+
+html[data-theme="dark"] .notice,
+body.dark-mode .notice {
+    color: var(--sky);
+}
+
+html[data-theme="dark"] .forgot,
+body.dark-mode .forgot {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .forgot:hover,
+body.dark-mode .forgot:hover {
+    color: var(--sky);
+}
+
+html[data-theme="dark"] .signup-line,
+body.dark-mode .signup-line {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .signup-line button,
+body.dark-mode .signup-line button {
+    color: var(--rose);
+}
+
+html[data-theme="dark"] .values svg,
+body.dark-mode .values svg {
+    color: var(--sky);
+}
+
+html[data-theme="dark"] .values span:nth-child(4) svg,
+body.dark-mode .values span:nth-child(4) svg {
+    color: var(--rose);
+}
+
+html[data-theme="dark"] .section-title button,
+body.dark-mode .section-title button {
+    color: var(--sky);
+}
+
+html[data-theme="dark"] .date-box,
+html[data-theme="dark"] .patient-avatar,
+body.dark-mode .date-box,
+body.dark-mode .patient-avatar {
+    color: var(--sky);
+}
+
+html[data-theme="dark"] .details,
+body.dark-mode .details {
+    color: var(--sky);
+}
+
+html[data-theme="dark"] .details:hover,
+body.dark-mode .details:hover {
+    color: #ffffff;
+    background: var(--royal);
+}
+
+html[data-theme="dark"] .welcome-card button,
+body.dark-mode .welcome-card button {
+    background: #ffffff;
+    color: var(--marine);
+}
+
+html[data-theme="dark"] .status,
+html[data-theme="dark"] .pending,
+body.dark-mode .status,
+body.dark-mode .pending {
+    background: var(--rose-bg);
+    color: var(--rose);
+}
+
+html[data-theme="dark"] .confirmed,
+body.dark-mode .confirmed {
+    background: var(--track);
+    color: var(--sky);
+}
+
+html[data-theme="dark"] .patient-heading small,
+html[data-theme="dark"] .patient-card p,
+html[data-theme="dark"] .appointment-info small,
+html[data-theme="dark"] .stats span,
+html[data-theme="dark"] .account-copy small,
 body.dark-mode .patient-heading small,
 body.dark-mode .patient-card p,
 body.dark-mode .appointment-info small,
-body.dark-mode .stats span {
-  color: #b5c0d3;
+body.dark-mode .stats span,
+body.dark-mode .account-copy small {
+    color: var(--muted);
 }
 
+html[data-theme="dark"] .brand-name,
+html[data-theme="dark"] .demo-card h2,
+html[data-theme="dark"] .account-copy strong,
+html[data-theme="dark"] .stats strong,
+html[data-theme="dark"] .section-title h3,
 body.dark-mode .brand-name,
 body.dark-mode .demo-card h2,
-body.dark-mode .account-copy strong {
-  color: #edf2fc;
+body.dark-mode .account-copy strong,
+body.dark-mode .stats strong,
+body.dark-mode .section-title h3 {
+    color: var(--text);
+}
+
+html[data-theme="dark"] .mark-head,
+html[data-theme="dark"] .mark-body,
+body.dark-mode .mark-head,
+body.dark-mode .mark-body {
+    background: var(--text);
+}
+
+html[data-theme="dark"] .mark-arm,
+body.dark-mode .mark-arm {
+    background: var(--rose);
+}
+
+html[data-theme="dark"] .mark-leg,
+body.dark-mode .mark-leg {
+    background: var(--sky);
 }
