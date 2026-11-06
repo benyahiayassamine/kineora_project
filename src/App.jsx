@@ -1,99 +1,179 @@
 import { useState } from 'react';
 import {
-  Activity, Eye, EyeOff, Heart, LockKeyhole, Mail,
-  ShieldCheck, Sparkles, UsersRound,
+  Activity,
+  Bell,
+  CalendarDays,
+  Eye,
+  EyeOff,
+  Heart,
+  HeartPulse,
+  LockKeyhole,
+  Mail,
+  ShieldCheck,
+  Sparkles,
+  UsersRound,
+  UserRound,
+  
 } from 'lucide-react';
 import Topbar from './components/Topbar.jsx';
 import LanguageThemePicker from './components/LanguageThemePicker.jsx';
 import usePreferences from './hooks/usePreferences.js';
 import { currentDoctor, followUpPatients, statsData, todayAppointments } from './data/mockData.js';
+import kineoraLogo from './assets/kineora-logo.png';
+import PatientsPage from './pages/PatientsPage.jsx';
+import PatientDetailsPage from './pages/PatientDetailsPage.jsx';
 
-function Dashboard() {
+
+function Dashboard({ onLogout }) {
   const { t, language } = usePreferences();
+  const [activePage, setActivePage] = useState('home');
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
   return (
-    <main className={`dashboard ${language === 'ar' ? 'rtl' : ''}`}>
-      <Topbar />
+    <main
+      id="home"
+      className={`dashboard ${language === 'ar' ? 'rtl' : ''}`}
+    >
+      <Topbar
+        onLogout={onLogout}
+        activePage={activePage}
+        onNavigate={setActivePage}
+      />
 
-      <section className="welcome-card">
-        <div>
-          <h2>
-            {t.greetingPrefix}, <bdi className="entity-name">{currentDoctor.name}</bdi> {t.greetingSuffix}
-          </h2>
-          <p>{t.summary}</p>
-        </div>
-        <button type="button">{t.start}</button>
-      </section>
-
-      <section className="stats">
-        <article><strong>{statsData.totalPatients}</strong><span>{t.totalPatients}</span></article>
-        <article><strong>{statsData.sessionsToday}</strong><span>{t.sessions}</span></article>
-        <article><strong>{statsData.avgAdherence}</strong><span>{t.adherence}</span></article>
-        <article><strong>{statsData.alertsCount}</strong><span>{t.alerts}</span></article>
-      </section>
-
-      <section className="today">
-        <div className="section-title">
-          <h3>{t.today}</h3>
-          <button type="button">{t.seeAll}</button>
-        </div>
-
-        {todayAppointments.map((apt) => (
-          <article key={apt.id} className="appointment">
-            <div className="date-box">
-              <strong>{apt.date.day}</strong>
-              <small>{apt.date.month}</small>
+      {selectedPatient ? (
+  <PatientDetailsPage
+    patient={selectedPatient}
+    onBack={() => setSelectedPatient(null)}
+  />
+) : activePage === 'patients' ? (
+        <PatientsPage />
+      ) : (
+        <>
+          <section className="welcome-card">
+            <div>
+              <h2>
+                {t.greetingPrefix},{' '}
+                <bdi className="entity-name">{currentDoctor.name}</bdi>{' '}
+                {t.greetingSuffix}
+              </h2>
+              <p>{t.summary}</p>
             </div>
-            <div className="appointment-info">
-              <strong>
-                <bdi className="entity-name">{apt.patientName}</bdi>
-              </strong>
-              <small>
-                <bdi>{apt.time}</bdi> • {t[apt.typeKey]}
-              </small>
+            <button type="button">{t.start}</button>
+          </section>
+
+          <section id="reports" className="stats">
+            <article className="stat-card">
+              <span className="stat-icon"><UsersRound /></span>
+              <div>
+                <strong>{statsData.totalPatients}</strong>
+                <small>{t.totalPatients}</small>
+              </div>
+            </article>
+
+            <article className="stat-card">
+              <span className="stat-icon"><CalendarDays /></span>
+              <div>
+                <strong>{statsData.sessionsToday}</strong>
+                <small>{t.sessions}</small>
+              </div>
+            </article>
+
+            <article className="stat-card">
+              <span className="stat-icon"><HeartPulse /></span>
+              <div>
+                <strong>{statsData.avgAdherence}</strong>
+                <small>{t.adherence}</small>
+              </div>
+            </article>
+
+            <article className="stat-card">
+              <span className="stat-icon"><Bell /></span>
+              <div>
+                <strong>{statsData.alertsCount}</strong>
+                <small>{t.alerts}</small>
+              </div>
+            </article>
+          </section>
+
+          <section id="appointments" className="today">
+            <div className="section-title">
+              <h3>{t.today}</h3>
+              <button type="button">{t.seeAll}</button>
             </div>
-            <span className={`appointment-status ${apt.statusKey}`}>{t[apt.statusKey]}</span>
-          </article>
-        ))}
-      </section>
 
-      <section className="follow-up">
-        <div className="section-title">
-          <h3>{t.followUp}</h3>
-          <button type="button">{t.seeAll}</button>
-        </div>
+            {todayAppointments.map((apt) => (
+              <article key={apt.id} className="appointment">
+                <div className="date-box">
+                  <strong>{apt.date.day}</strong>
+                  <small>{apt.date.month}</small>
+                </div>
 
-        <div className="patient-list">
-          {followUpPatients.map((patient) => (
-            <article key={patient.id} className="patient-card">
-              <div className="patient-heading">
-                <span className="patient-avatar">{patient.avatar}</span>
-                <div>
-                  <strong>
-                    <bdi className="entity-name">{patient.name}</bdi>
+                <div className="appointment-info">
+                  <strong className="appointment-person">
+                    <UserRound size={14} />
+                    <bdi>{apt.patientName}</bdi>
                   </strong>
                   <small>
-                    {t.patientLabel}: <bdi className="entity-name">{patient.guardian}</bdi>
+                    {apt.time} • {t[apt.typeKey]}
                   </small>
                 </div>
-                <span className="status">{t[patient.statusKey]}</span>
-              </div>
-              <p>
-                <span>{t.week} {patient.currentWeek} {t.of} {patient.totalWeeks}</span>
-                <strong><bdi>{patient.progressPercent}%</bdi></strong>
-              </p>
-              <div className="progress">
-                <span style={{ width: `${patient.progressPercent}%` }} />
-              </div>
-              <button type="button" className="details">{t.viewDetails}</button>
-            </article>
-          ))}
-        </div>
-      </section>
+
+                <span className={`appointment-status ${apt.statusKey}`}>
+                  {t[apt.statusKey]}
+                </span>
+              </article>
+            ))}
+          </section>
+
+          <section id="patients" className="follow-up">
+            <div className="section-title">
+              <h3>{t.followUp}</h3>
+              <button type="button">{t.seeAll}</button>
+            </div>
+
+            <div className="patient-list">
+              {followUpPatients.slice(0, 2).map((patient) => (
+                <article key={patient.id} className="patient-card">
+                  <div className="patient-heading">
+                    <span className="patient-avatar">{patient.avatar}</span>
+
+                    <div>
+                      <strong>{patient.name}</strong>
+                      <small>
+                        {t.patientLabel}: {patient.guardian}
+                      </small>
+                    </div>
+
+                    <span className="status">{t[patient.conditionKey]}</span>
+                  </div>
+
+                  <p>
+                    <span>
+                      {t.week} {patient.currentWeek} {t.of} {patient.totalWeeks}
+                    </span>
+                    <strong>{patient.progressPercent}%</strong>
+                  </p>
+
+                  <div className="progress">
+                    <span style={{ width: `${patient.progressPercent}%` }} />
+                  </div>
+
+                  <button
+  type="button"
+  className="details"
+  onClick={() => setSelectedPatient(patient)}
+>
+  {t.viewDetails}
+</button>
+                </article>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
     </main>
   );
 }
-
 function Login({ onLogin }) {
   const { t, language } = usePreferences();
   const [role, setRole] = useState('doctor');
@@ -112,17 +192,15 @@ function Login({ onLogin }) {
       <LanguageThemePicker className="language-picker" />
 
       <section className="login-column">
-        <header className="brand">
-          <div className="brand-mark" aria-hidden="true">
-            <span className="mark-head" />
-            <span className="mark-body" />
-            <span className="mark-arm" />
-            <span className="mark-leg left" />
-            <span className="mark-leg right" />
-          </div>
-          <div className="brand-name">KINEORA</div>
-          <div className="tagline">{t.tagline}</div>
-        </header>
+          <header className="brand">
+           <img
+             className="login-logo"
+             src={kineoraLogo}
+             alt=""
+            />
+            <div className="brand-name">KINEORA</div>
+            <div className="tagline">{t.tagline}</div>
+         </header>
 
         <div className="role-switch">
           <button
@@ -130,14 +208,14 @@ function Login({ onLogin }) {
             className={role === 'doctor' ? 'active' : ''}
             onClick={() => setRole('doctor')}
           >
-            🟡 {t.doctor}
+            🧑 {t.doctor}
           </button>
           <button
             type="button"
             className={role === 'parent' ? 'active' : ''}
             onClick={() => setRole('parent')}
           >
-            👤 {t.parent}
+            🧑 {t.parent}
           </button>
         </div>
 
@@ -208,7 +286,7 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   return loggedIn ? (
-    <Dashboard />
+    <Dashboard onLogout={() => setLoggedIn(false)} />
   ) : (
     <Login onLogin={() => setLoggedIn(true)} />
   );

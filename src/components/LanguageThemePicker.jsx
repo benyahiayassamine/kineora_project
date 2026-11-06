@@ -9,7 +9,7 @@ export function LanguageThemePicker({ className = 'language-picker' }) {
   const languages = [
     { code: 'ar', flag: '🇩🇿', title: 'العربية', aria: t.switchToAr || 'العربية' },
     { code: 'fr', flag: '🇫🇷', title: 'Français', aria: t.switchToFr || 'Français' },
-    { code: 'en', flag: '🇬🇧', title: 'English', aria: t.switchToEn || 'English' },
+    { code: 'en', flag: 'EN', title: 'English', aria: t.switchToEn || 'English' },
   ];
 
   return (

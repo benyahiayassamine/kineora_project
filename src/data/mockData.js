@@ -31,6 +31,7 @@ export const todayAppointments = [
     date: { day: '03', month: 'Nov' },
     typeKey: 'checkup',
     statusKey: 'confirmed',
+    
   },
   {
     id: 'APT-102',
@@ -39,6 +40,7 @@ export const todayAppointments = [
     date: { day: '03', month: 'Nov' },
     typeKey: 'xray',
     statusKey: 'pending',
+    
   },
 ];
 
@@ -53,6 +55,7 @@ export const followUpPatients = [
     totalWeeks: 6,
     progressPercent: 68,
     medication: 'Paracetamol 500mg',
+    conditionKey: 'forearmFracture',
   },
   {
     id: 'PAT-202',
@@ -64,5 +67,30 @@ export const followUpPatients = [
     totalWeeks: 6,
     progressPercent: 38,
     medication: 'Ibuprofen 400mg',
+    conditionKey: 'clavicleFracture',
+  },
+  {
+    id: 'PAT-203',
+    name: 'Mohamed',
+    guardian: 'Rachid',
+    avatar: 'M',
+    statusKey: 'followUpStatus',
+    currentWeek: 2,
+    totalWeeks: 12,
+    progressPercent: 18,
+    medication: '',
+    conditionKey: 'hipFracture',
+  },
+  {
+    id: 'PAT-204',
+    name: 'Salim',
+    guardian: 'Personal patient',
+    avatar: 'S',
+    statusKey: 'followUpStatus',
+    currentWeek: 5,
+    totalWeeks: 6,
+    progressPercent: 84,
+    medication: '',
+    conditionKey: 'wristFracture',
   },
 ];
