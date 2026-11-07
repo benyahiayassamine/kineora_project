@@ -69,6 +69,7 @@ export const translations = {
     wristFracture: 'Wrist fracture',
     addPatient: 'Add patient',
     searchPatient: 'Search patient',
+    exportPdf: 'Export PDF',
 // Appointments
     appointmentsSubtitle: 'Manage and organize your patient appointments.',
     addAppointment: 'Add appointment',
@@ -89,6 +90,25 @@ export const translations = {
     cancel: 'Cancel',
     saveChanges: 'Save changes',
   },
+
+  //EDITPAGE
+editPlan: 'Edit plan',
+exercises: 'Exercises',
+medication: 'Medication',
+previousVersions: 'Previous versions',
+exerciseName: 'Exercise name',
+sets: 'Sets',
+reps: 'Reps',
+durationMin: 'Duration (min)',
+addExercise: 'Add exercise',
+removeExercise: 'Remove exercise',
+savePlan: 'Save plan',
+planSaved: 'Plan saved',
+noPreviousVersions: 'No previous versions yet.',
+medicationName: 'Medication name',
+dosage: 'Dosage',
+dosageExample: 'Example: 500 mg, twice a day',
+close: 'Close',
 
   fr: {
     // Marque
@@ -159,6 +179,7 @@ export const translations = {
     wristFracture: 'Fracture du poignet',
     addPatient: 'Ajouter un patient',
     searchPatient: 'rechercher un patient',
+    exportPdf: 'Exporter en PDF',
 // Rendez-vous
     appointmentsSubtitle: 'Gérez et organisez les rendez-vous de vos patients.',
     addAppointment: 'Ajouter un rendez-vous',
@@ -178,7 +199,29 @@ export const translations = {
     teleconsultation: 'Téléconsultation',
     cancel: 'Annuler',
     saveChanges: 'Enregistrer les modifications',
+
+     //EDITPAGE
+     editPlan: 'Modifier le programme',
+exercises: 'Exercices',
+medication: 'Médicament',
+previousVersions: 'Versions précédentes',
+exerciseName: "Nom de l’exercice",
+sets: 'Séries',
+reps: 'Répétitions',
+durationMin: 'Durée (min)', 
+addExercise: 'Ajouter un exercice',
+removeExercise: 'حذف التمرين',
+savePlan: 'Enregistrer le programme',
+planSaved: 'Programme enregistré',
+noPreviousVersions: 'Aucune version précédente.',
+medicationName: 'اسم الدواء',
+dosage: 'Dosage',
+dosageExample: 'مثال: 500 ملغ، مرتين يوميًا',
+close: 'إغلاق',
   },
+
+ 
+  
 
   ar: {
     // العلامة التجارية
@@ -249,6 +292,7 @@ export const translations = {
     wristFracture: 'كسر المعصم',
     addPatient: 'إضافة مريض',
     searchPatient:'ابحث عن مريض',
+    exportPdf: 'تصدير PDF',
 // المواعيد
     appointmentsSubtitle: 'إدارة وتنظيم مواعيد المرضى.',
     addAppointment: 'إضافة موعد',
@@ -268,6 +312,26 @@ export const translations = {
     teleconsultation: 'استشارة عن بُعد',
     cancel: 'إلغاء',
     saveChanges: 'حفظ التغييرات',
+
+    //EDITPAGE
+
+    editPlan: 'تعديل البرنامج',
+exercises: 'التمارين',
+medication: 'الدواء',
+previousVersions: 'النسخ السابقة',
+exerciseName: 'اسم التمرين',
+sets: 'المجموعات',
+reps: 'التكرارات',
+durationMin: 'المدة (دقيقة)',
+addExercise: 'إضافة تمرين',
+removeExercise: 'حذف التمرين',
+savePlan: 'حفظ البرنامج',
+planSaved: 'تم حفظ البرنامج',
+noPreviousVersions: 'لا توجد نسخ سابقة.',
+medicationName: 'اسم الدواء',
+dosage: 'الجرعة',
+dosageExample: 'مثال: 500 ملغ، مرتين يوميًا',
+close: 'إغلاق',
   },
 };
 

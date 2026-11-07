@@ -30,7 +30,9 @@ export default function PatientDetailsPage({ patient, onBack }) {
         </div>
 
         <span className="status">
-          {patient.conditionKey ? t[patient.conditionKey] : patient.condition}
+          {patient.conditionKey
+            ? t[patient.conditionKey] || patient.conditionKey
+            : patient.condition}
         </span>
 
         <p className="modal-progress-label">
@@ -57,11 +59,25 @@ export default function PatientDetailsPage({ patient, onBack }) {
           </h4>
 
           <div className="exercise-chips">
-            {exercises.map((exercise) => (
-              <span key={exercise}>{exercise}</span>
-            ))}
+            {exercises.map((exercise, index) => {
+              const label =
+                 typeof exercise === 'string'
+                   ? exercise
+                   : `${exercise.name}${exercise.sets ? ` ${exercise.sets}×` : ''}${
+                       exercise.reps || ''
+                     }${exercise.duration ? ` • ${exercise.duration} min` : ''}`;
+
+            return <span key={`${label}-${index}`}>{label}</span>;
+           })}
           </div>
         </section>
+            <button
+              className="export-pdf-button"
+              type="button"
+              onClick={() => window.print()}
+            >
+            📄 {t.exportPdf || 'Export PDF'}
+            </button>
       </article>
     </section>
   );

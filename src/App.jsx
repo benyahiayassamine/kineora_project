@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import {
   Activity,
   Bell,
@@ -52,7 +52,10 @@ function Dashboard({ currentPage, onNavigate, onLogout }) {
               </h2>
               <p>{t.summary}</p>
             </div>
-            <button type="button">{t.start}</button>
+            <button type="button" onClick={() => onNavigate('appointments')}
+              >
+             {t.start}
+           </button>
           </section>
 
           <section id="reports" className="stats">
@@ -92,7 +95,10 @@ function Dashboard({ currentPage, onNavigate, onLogout }) {
           <section id="appointments" className="today">
             <div className="section-title">
               <h3>{t.today}</h3>
-              <button type="button">{t.seeAll}</button>
+              <button type="button" onClick={() => onNavigate('appointments')}
+                >
+               {t.seeAll}
+             </button>
             </div>
 
             {todayAppointments.map((apt) => (
@@ -122,7 +128,10 @@ function Dashboard({ currentPage, onNavigate, onLogout }) {
           <section id="patients" className="follow-up">
             <div className="section-title">
               <h3>{t.followUp}</h3>
-              <button type="button">{t.seeAll}</button>
+              <button type="button" onClick={() => onNavigate('patients')}
+                  >
+                 {t.seeAll}
+              </button>
             </div>
 
             <div className="patient-list">
