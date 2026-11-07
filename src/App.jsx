@@ -1,19 +1,20 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import {
   Activity, Eye, EyeOff, Heart, LockKeyhole, Mail,
   ShieldCheck, Sparkles, UsersRound,
 } from 'lucide-react';
 import Topbar from './components/Topbar.jsx';
+import Appointments from './pages/Appointments.jsx';
 import LanguageThemePicker from './components/LanguageThemePicker.jsx';
 import usePreferences from './hooks/usePreferences.js';
 import { currentDoctor, followUpPatients, statsData, todayAppointments } from './data/mockData.js';
 
-function Dashboard() {
+function Dashboard({ currentPage, onNavigate }) {
   const { t, language } = usePreferences();
 
   return (
     <main className={`dashboard ${language === 'ar' ? 'rtl' : ''}`}>
-      <Topbar />
+      <Topbar currentPage={currentPage} onNavigate={onNavigate} />
 
       <section className="welcome-card">
         <div>
@@ -206,10 +207,18 @@ function Login({ onLogin }) {
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
 
-  return loggedIn ? (
-    <Dashboard />
+  if (!loggedIn) {
+    return <Login onLogin={() => setLoggedIn(true)} />;
+  }
+
+  return currentPage === 'appointments' ? (
+    <>
+      <Topbar currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Appointments />
+    </>
   ) : (
-    <Login onLogin={() => setLoggedIn(true)} />
+    <Dashboard currentPage={currentPage} onNavigate={setCurrentPage} />
   );
 }
