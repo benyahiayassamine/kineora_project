@@ -16,6 +16,7 @@ import {
   
 } from 'lucide-react';
 import Topbar from './components/Topbar.jsx';
+import Appointments from './pages/Appointments.jsx';
 import LanguageThemePicker from './components/LanguageThemePicker.jsx';
 import usePreferences from './hooks/usePreferences.js';
 import { currentDoctor, followUpPatients, statsData, todayAppointments } from './data/mockData.js';
@@ -23,29 +24,22 @@ import kineoraLogo from './assets/kineora-logo.png';
 import PatientsPage from './pages/PatientsPage.jsx';
 import PatientDetailsPage from './pages/PatientDetailsPage.jsx';
 
-
-function Dashboard({ onLogout }) {
+function Dashboard({ currentPage, onNavigate, onLogout }) {
   const { t, language } = usePreferences();
-  const [activePage, setActivePage] = useState('home');
   const [selectedPatient, setSelectedPatient] = useState(null);
 
   return (
-    <main
-      id="home"
-      className={`dashboard ${language === 'ar' ? 'rtl' : ''}`}
-    >
-      <Topbar
-        onLogout={onLogout}
-        activePage={activePage}
-        onNavigate={setActivePage}
-      />
+    <main id="home" className={`dashboard ${language === 'ar' ? 'rtl' : ''}`}>
+      <Topbar onLogout={onLogout} currentPage={currentPage} onNavigate={onNavigate} />
 
       {selectedPatient ? (
   <PatientDetailsPage
     patient={selectedPatient}
     onBack={() => setSelectedPatient(null)}
   />
-) : activePage === 'patients' ? (
+) : currentPage === 'appointments' ? (
+        <Appointments />
+      ) : currentPage === 'patients' ? (
         <PatientsPage />
       ) : (
         <>
@@ -284,10 +278,17 @@ function Login({ onLogin }) {
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
 
-  return loggedIn ? (
-    <Dashboard onLogout={() => setLoggedIn(false)} />
-  ) : (
-    <Login onLogin={() => setLoggedIn(true)} />
+  if (!loggedIn) {
+    return <Login onLogin={() => setLoggedIn(true)} />;
+  }
+
+  return (
+    <Dashboard
+      currentPage={currentPage}
+      onNavigate={setCurrentPage}
+      onLogout={() => setLoggedIn(false)}
+    />
   );
 }
