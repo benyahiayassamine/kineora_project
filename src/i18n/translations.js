@@ -55,7 +55,11 @@ export const translations = {
     confirmed: 'Confirmed',
     pending: 'Pending',
     followUp: 'Patient follow-up',
-    patientLabel: 'Patient',
+    patientLabel: 'Parent',
+    forearmFracture: 'Forearm fracture',
+    clavicleFracture: 'Clavicle fracture',
+    hipFracture: 'Hip fracture',
+    wristFracture: 'Wrist fracture',
     guardianLabel: 'Guardian',
     medicationLabel: 'Medication',
     followUpStatus: 'Follow-up',
@@ -63,6 +67,11 @@ export const translations = {
     week: 'Week',
     of: 'of',
     viewDetails: 'View details',
+
+    // Patients
+    addPatient: 'Add patient',
+    searchPatient: 'Search patient',
+    exportPdf: 'Export PDF',
 
     // Appointments
     appointmentsSubtitle: 'Manage and organize your patient appointments.',
@@ -83,6 +92,25 @@ export const translations = {
     teleconsultation: 'Teleconsultation',
     cancel: 'Cancel',
     saveChanges: 'Save changes',
+
+    // Edit Plan
+    editPlan: 'Edit plan',
+    exercises: 'Exercises',
+    medication: 'Medication',
+    previousVersions: 'Previous versions',
+    exerciseName: 'Exercise name',
+    sets: 'Sets',
+    reps: 'Reps',
+    durationMin: 'Duration (min)',
+    addExercise: 'Add exercise',
+    removeExercise: 'Remove exercise',
+    savePlan: 'Save plan',
+    planSaved: 'Plan saved',
+    noPreviousVersions: 'No previous versions yet.',
+    medicationName: 'Medication name',
+    dosage: 'Dosage',
+    dosageExample: 'Example: 500 mg, twice a day',
+    close: 'Close',
   },
 
   fr: {
@@ -140,7 +168,11 @@ export const translations = {
     confirmed: 'Confirmé',
     pending: 'En attente',
     followUp: 'Suivi des patients',
-    patientLabel: 'Patient',
+    patientLabel: 'Parent',
+    forearmFracture: 'Fracture de l’avant-bras',
+    clavicleFracture: 'Fracture de la clavicule',
+    hipFracture: 'Fracture de la hanche',
+    wristFracture: 'Fracture du poignet',
     guardianLabel: 'Accompagnant',
     medicationLabel: 'Médicament',
     followUpStatus: 'À suivre',
@@ -148,6 +180,11 @@ export const translations = {
     week: 'Semaine',
     of: 'sur',
     viewDetails: 'Voir les détails',
+
+    // Patients
+    addPatient: 'Ajouter un patient',
+    searchPatient: 'Rechercher un patient',
+    exportPdf: 'Exporter en PDF',
 
     // Rendez-vous
     appointmentsSubtitle: 'Gérez et organisez les rendez-vous de vos patients.',
@@ -168,6 +205,25 @@ export const translations = {
     teleconsultation: 'Téléconsultation',
     cancel: 'Annuler',
     saveChanges: 'Enregistrer les modifications',
+
+    // Modifier le programme
+    editPlan: 'Modifier le programme',
+    exercises: 'Exercices',
+    medication: 'Médicament',
+    previousVersions: 'Versions précédentes',
+    exerciseName: 'Nom de l’exercice',
+    sets: 'Séries',
+    reps: 'Répétitions',
+    durationMin: 'Durée (min)',
+    addExercise: 'Ajouter un exercice',
+    removeExercise: 'Supprimer l’exercice',
+    savePlan: 'Enregistrer le programme',
+    planSaved: 'Programme enregistré',
+    noPreviousVersions: 'Aucune version précédente.',
+    medicationName: 'Nom du médicament',
+    dosage: 'Dosage',
+    dosageExample: 'Exemple : 500 mg, deux fois par jour',
+    close: 'Fermer',
   },
 
   ar: {
@@ -175,7 +231,7 @@ export const translations = {
     brandName: 'KINEORA',
     tagline: 'تأهيل • متابعة • تقدم',
 
-    // Navigation & Topbar
+    // التنقل والشريط العلوي
     home: 'الرئيسية',
     patients: 'المرضى',
     appointments: 'المواعيد',
@@ -190,7 +246,7 @@ export const translations = {
     noAccount: 'ليس لديك حساب بعد؟',
     signUp: 'إنشاء حساب',
     doctor: 'طبيب — لوحة ويب',
-    parent: 'وليّ — تطبيق الهاتف',
+    parent: 'وليّ الأمر — تطبيق الهاتف',
     resetNotice: 'إعادة تعيين كلمة المرور غير مفعّلة بعد.',
     signupNotice: 'إنشاء الحساب غير مفعّل بعد.',
 
@@ -225,7 +281,11 @@ export const translations = {
     confirmed: 'مؤكد',
     pending: 'قيد الانتظار',
     followUp: 'متابعة المرضى',
-    patientLabel: 'المريض(ة)',
+    patientLabel: 'وليّ الأمر',
+    forearmFracture: 'كسر الساعد',
+    clavicleFracture: 'كسر الترقوة',
+    hipFracture: 'كسر الورك',
+    wristFracture: 'كسر المعصم',
     guardianLabel: 'المرافق',
     medicationLabel: 'الدواء',
     followUpStatus: 'تحتاج متابعة',
@@ -233,6 +293,11 @@ export const translations = {
     week: 'الأسبوع',
     of: 'من',
     viewDetails: 'عرض التفاصيل',
+
+    // المرضى
+    addPatient: 'إضافة مريض',
+    searchPatient: 'ابحث عن مريض',
+    exportPdf: 'تصدير PDF',
 
     // المواعيد
     appointmentsSubtitle: 'إدارة وتنظيم مواعيد المرضى.',
@@ -253,6 +318,25 @@ export const translations = {
     teleconsultation: 'استشارة عن بُعد',
     cancel: 'إلغاء',
     saveChanges: 'حفظ التغييرات',
+
+    // تعديل البرنامج
+    editPlan: 'تعديل البرنامج',
+    exercises: 'التمارين',
+    medication: 'الدواء',
+    previousVersions: 'النسخ السابقة',
+    exerciseName: 'اسم التمرين',
+    sets: 'المجموعات',
+    reps: 'التكرارات',
+    durationMin: 'المدة (دقيقة)',
+    addExercise: 'إضافة تمرين',
+    removeExercise: 'حذف التمرين',
+    savePlan: 'حفظ البرنامج',
+    planSaved: 'تم حفظ البرنامج',
+    noPreviousVersions: 'لا توجد نسخ سابقة.',
+    medicationName: 'اسم الدواء',
+    dosage: 'الجرعة',
+    dosageExample: 'مثال: 500 ملغ، مرتين يوميًا',
+    close: 'إغلاق',
   },
 };
 

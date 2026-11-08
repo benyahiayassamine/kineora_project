@@ -1,25 +1,38 @@
 ﻿import usePreferences from '../hooks/usePreferences.js';
 import LanguageThemePicker from './LanguageThemePicker.jsx';
+import { currentDoctor } from '../data/mockData.js';
+import kineoraLogo from '../assets/kineora-logo.png';
+import { LogOut } from 'lucide-react';
 
-function Topbar({ currentPage = 'home', onNavigate = () => {} }) {
-  const prefs = usePreferences();
-  const labels = prefs.t;
+export default function Topbar({
+  onLogout,
+  currentPage = 'home',
+  onNavigate = () => {},
+}) {
+  const { t } = usePreferences();
 
   return (
     <header className="topbar">
-      <strong>KINEORA</strong>
+      <div className="topbar-brand">
+        <img className="topbar-logo" src={kineoraLogo} alt="" />
+        <strong>KINEORA</strong>
+      </div>
 
-      <nav>
+      <nav className="topbar-nav">
         <button
           type="button"
           className={currentPage === 'home' ? 'active' : ''}
           onClick={() => onNavigate('home')}
         >
-          {labels.home}
+          {t.home}
         </button>
 
-        <button type="button" disabled>
-          {labels.patients}
+        <button
+          type="button"
+          className={currentPage === 'patients' ? 'active' : ''}
+          onClick={() => onNavigate('patients')}
+        >
+          {t.patients}
         </button>
 
         <button
@@ -27,17 +40,31 @@ function Topbar({ currentPage = 'home', onNavigate = () => {} }) {
           className={currentPage === 'appointments' ? 'active' : ''}
           onClick={() => onNavigate('appointments')}
         >
-          {labels.appointments}
+          {t.appointments}
         </button>
 
-        <button type="button" disabled>
-          {labels.reports}
-        </button>
+        <a href="#reports">{t.reports}</a>
       </nav>
 
-      <LanguageThemePicker className="topbar-tools" />
+      <div className="topbar-actions">
+        <LanguageThemePicker />
+
+        <span className="doctor-name">
+          <span className="doctor-icon" aria-hidden="true">
+            🧑‍⚕️
+          </span>
+          <bdi>{currentDoctor.name}</bdi>
+        </span>
+
+        <button
+          type="button"
+          className="logout-button"
+          onClick={onLogout}
+        >
+          <LogOut size={14} />
+          {t.logout || 'Logout'}
+        </button>
+      </div>
     </header>
   );
 }
-
-export default Topbar;
