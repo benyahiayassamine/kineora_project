@@ -43,7 +43,14 @@ export default function Topbar({
           {t.appointments}
         </button>
 
-        <a href="#reports">{t.reports}</a>
+        <button type="button" className={currentPage === 'reports' ? 'active' : ''} onClick={() => onNavigate('reports')}>{t.reports}</button>
+        <button
+  type="button"
+  className={currentPage === 'settings' ? 'active' : ''}
+  onClick={() => onNavigate('settings')}
+>
+  Settings
+</button>
       </nav>
 
       <div className="topbar-actions">

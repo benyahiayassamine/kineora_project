@@ -111,6 +111,20 @@ export const translations = {
     dosage: 'Dosage',
     dosageExample: 'Example: 500 mg, twice a day',
     close: 'Close',
+
+
+    reportsSubtitle: 'Track your clinic performance and patient progress',
+weeklyActivity: 'Weekly Activity',
+weeklyActivitySubtitle: 'Your activity over the last 7 days',
+patientAdherence: 'Patient Adherence',
+patientAdherenceSubtitle: 'Treatment progress by patient',
+mon: 'Mon',
+tue: 'Tue',
+wed: 'Wed',
+thu: 'Thu',
+fri: 'Fri',
+sat: 'Sat',
+sun: 'Sun',
   },
 
   fr: {
@@ -224,6 +238,20 @@ export const translations = {
     dosage: 'Dosage',
     dosageExample: 'Exemple : 500 mg, deux fois par jour',
     close: 'Fermer',
+
+
+    reportsSubtitle: 'Suivez les performances de votre clinique et les progrès des patients',
+weeklyActivity: 'Activité hebdomadaire',
+weeklyActivitySubtitle: 'Votre activité au cours des 7 derniers jours',
+patientAdherence: 'Adhésion des patients',
+patientAdherenceSubtitle: 'Progression du traitement par patient',
+mon: 'Lun',
+tue: 'Mar',
+wed: 'Mer',
+thu: 'Jeu',
+fri: 'Ven',
+sat: 'Sam',
+sun: 'Dim',
   },
 
   ar: {
@@ -337,6 +365,20 @@ export const translations = {
     dosage: 'الجرعة',
     dosageExample: 'مثال: 500 ملغ، مرتين يوميًا',
     close: 'إغلاق',
+
+
+    reportsSubtitle: 'تابع أداء العيادة وتقدم المرضى',
+weeklyActivity: 'النشاط الأسبوعي',
+weeklyActivitySubtitle: 'نشاطك خلال الأيام السبعة الماضية',
+patientAdherence: 'التزام المرضى',
+patientAdherenceSubtitle: 'تقدم العلاج حسب كل مريض',
+mon: 'الإثنين',
+tue: 'الثلاثاء',
+wed: 'الأربعاء',
+thu: 'الخميس',
+fri: 'الجمعة',
+sat: 'السبت',
+sun: 'الأحد',
   },
 };
 

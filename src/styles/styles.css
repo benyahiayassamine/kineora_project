@@ -2868,3 +2868,405 @@ body.dark-mode .appointment-modal select {
   margin-top: 3px;
 }
 
+
+/* ========================================================
+   KINEORA - Reports Page | Figma layout
+   ======================================================== */
+
+.reports-page {
+  width: min(calc(100% - 32px), 520px);
+  min-height: calc(100vh - 64px);
+  margin: 0 auto;
+  padding: 18px 0 40px;
+  color: var(--text);
+}
+
+.reports-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.reports-heading h1 {
+  margin: 0;
+  padding-left: 7px;
+  border-left: 3px solid var(--rose);
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 800;
+}
+
+.reports-heading p {
+  display: none;
+}
+
+.reports-export {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--surface2);
+  color: var(--royal);
+  font-size: 9px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reports-export:hover {
+  background: var(--rose-bg);
+}
+
+.reports-export svg {
+  width: 11px;
+  height: 11px;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 340px);
+}
+
+.report-card {
+  min-width: 0;
+  min-height: 131px;
+  padding: 11px 10px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface);
+  box-shadow: 0 5px 14px rgba(37, 42, 61, .06);
+}
+
+.report-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.report-card-header h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 8px;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.report-card-header p {
+  display: none;
+}
+
+.report-growth {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--rose);
+  font-size: 8px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.report-growth svg {
+  display: none;
+}
+
+.weekly-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4px;
+  height: 68px;
+  padding-top: 3px;
+}
+
+.chart-column {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.chart-bar-area {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.chart-bar {
+  width: 100%;
+  max-width: 18px;
+  min-height: 7px;
+  border-radius: 4px 4px 2px 2px;
+  background: var(--grad-blue);
+}
+
+.chart-column:nth-child(5) .chart-bar {
+  background: var(--grad-blue-rose);
+}
+
+.chart-column:nth-child(n+6) .chart-bar {
+  background: var(--surface2);
+}
+
+.chart-column > span {
+  display: none;
+}
+
+/* Patient adherence: avatar, name, bar and percentage in one row */
+.adherence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 1px;
+}
+
+.adherence-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.adherence-info {
+  display: contents;
+}
+
+.adherence-avatar {
+  display: grid;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface2);
+  color: var(--rose);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.adherence-name {
+  flex: 0 0 48px;
+  overflow: hidden;
+  color: var(--text);
+  font-size: 7px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adherence-info strong {
+  order: 4;
+  flex: 0 0 22px;
+  color: var(--royal);
+  font-size: 7px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.adherence-track {
+  order: 3;
+  flex: 1;
+  min-width: 12px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--track);
+}
+
+.adherence-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--grad-blue-rose);
+}
+
+@media (max-width: 480px) {
+  .reports-page {
+    width: calc(100% - 24px);
+    padding-top: 16px;
+  }
+
+  .reports-grid {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .report-card {
+    padding: 10px 8px;
+  }
+
+  .adherence-name {
+    flex-basis: 40px;
+  }
+
+  .adherence-item {
+    gap: 4px;
+  }
+}
+
+html[dir="rtl"] .reports-heading h1,
+.rtl .reports-heading h1 {
+  padding-left: 0;
+  padding-right: 7px;
+  border-left: 0;
+  border-right: 3px solid var(--rose);
+}
+
+html[dir="rtl"] .adherence-info strong {
+  text-align: left;
+}
+
+@media print {
+  .reports-page {
+    width: 100%;
+    min-height: auto;
+    padding: 15px;
+    background: white;
+    color: #252A3D;
+  }
+
+  .reports-export {
+    display: none;
+  }
+
+  .report-card {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+}
+
+/* ================================
+   DOCTOR SETTINGS PAGE
+================================ */
+
+.settings-page {
+  padding: 28px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.settings-header {
+  margin-bottom: 28px;
+}
+
+.settings-header h1 {
+  color: var(--text-primary);
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.settings-header p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.settings-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.settings-card h2 {
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-bottom: 22px;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.settings-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-card input,
+.settings-card textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  background: var(--input-bg, var(--card-bg));
+  color: var(--text-primary);
+  font: inherit;
+  outline: none;
+}
+
+.settings-card input:focus,
+.settings-card textarea:focus {
+  border-color: #4478C4;
+  box-shadow: 0 0 0 3px rgba(68, 120, 196, 0.12);
+}
+
+.settings-card textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.settings-full-width {
+  grid-column: 1 / -1;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.settings-save {
+  background: #4478C4;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 26px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.settings-save:hover {
+  background: #2F5FA8;
+}
+
+@media (max-width: 650px) {
+  .settings-page {
+    padding: 16px;
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-full-width {
+    grid-column: auto;
+  }
+
+  .settings-card {
+    padding: 18px;
+  }
+}

@@ -23,6 +23,8 @@ import { currentDoctor, followUpPatients, statsData, todayAppointments } from '.
 import kineoraLogo from './assets/kineora-logo.png';
 import PatientsPage from './pages/PatientsPage.jsx';
 import PatientDetailsPage from './pages/PatientDetailsPage.jsx';
+import ReportsPage from './pages/ReportsPage.jsx';
+import SettingsPage from './pages/SettingsPage.jsx';
 
 function Dashboard({ currentPage, onNavigate, onLogout }) {  const { t, language } = usePreferences();
   const [selectedPatient, setSelectedPatient] = useState(null);
@@ -40,7 +42,11 @@ function Dashboard({ currentPage, onNavigate, onLogout }) {  const { t, language
     patient={selectedPatient}
     onBack={() => setSelectedPatient(null)}
   />
-) : currentPage === 'appointments' ? (
+) : currentPage === 'settings' ? (
+        <SettingsPage />
+      ) : currentPage === 'reports' ? (
+        <ReportsPage />
+      ) : currentPage === 'appointments' ? (
         <Appointments />
       ) : currentPage === 'patients' ? (
         <PatientsPage />
