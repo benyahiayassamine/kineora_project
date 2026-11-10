@@ -23,21 +23,30 @@ import { currentDoctor, followUpPatients, statsData, todayAppointments } from '.
 import kineoraLogo from './assets/kineora-logo.png';
 import PatientsPage from './pages/PatientsPage.jsx';
 import PatientDetailsPage from './pages/PatientDetailsPage.jsx';
+import ReportsPage from './pages/ReportsPage.jsx';
+import SettingsPage from './pages/SettingsPage.jsx';
 
-function Dashboard({ currentPage, onNavigate, onLogout }) {
-  const { t, language } = usePreferences();
+function Dashboard({ currentPage, onNavigate, onLogout }) {  const { t, language } = usePreferences();
   const [selectedPatient, setSelectedPatient] = useState(null);
 
   return (
-    <main id="home" className={`dashboard ${language === 'ar' ? 'rtl' : ''}`}>
-      <Topbar onLogout={onLogout} currentPage={currentPage} onNavigate={onNavigate} />
+<main id="home" className={`dashboard ${language === 'ar' ? 'rtl' : ''}`}>
+  <Topbar
+    onLogout={onLogout}
+    currentPage={currentPage}
+    onNavigate={onNavigate}
+  />
 
       {selectedPatient ? (
   <PatientDetailsPage
     patient={selectedPatient}
     onBack={() => setSelectedPatient(null)}
   />
-) : currentPage === 'appointments' ? (
+) : currentPage === 'settings' ? (
+        <SettingsPage />
+      ) : currentPage === 'reports' ? (
+        <ReportsPage />
+      ) : currentPage === 'appointments' ? (
         <Appointments />
       ) : currentPage === 'patients' ? (
         <PatientsPage />
@@ -293,11 +302,12 @@ export default function App() {
     return <Login onLogin={() => setLoggedIn(true)} />;
   }
 
-  return (
-    <Dashboard
-      currentPage={currentPage}
-      onNavigate={setCurrentPage}
-      onLogout={() => setLoggedIn(false)}
-    />
-  );
+return (
+  <Dashboard
+    currentPage={currentPage}
+    onNavigate={setCurrentPage}
+    onLogout={() => setLoggedIn(false)}
+  />
+);
+  
 }
