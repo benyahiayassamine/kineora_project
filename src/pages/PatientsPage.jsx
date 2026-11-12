@@ -4,17 +4,20 @@ import { useEffect, useState } from 'react';
 import PatientDetailsPage from './PatientDetailsPage.jsx';
 import EditPlanPage from './EditPlanPage.jsx';
 import AddPatientModal from './AddPatientModal.jsx';
+import PatientTipsPage from './PatientTipsPage.jsx';
 
 
 
 export default function PatientsPage() {
   const [patientPlans, setPatientPlans] = useState({});
+  const [tipPatient, setTipPatient] = useState(null);
   const { t } = usePreferences();
   const [search, setSearch] = useState('');
   const [editingPatient, setEditingPatient] = useState(null);
  const [patients, setPatients] = useState(() => {
   try {
     const savedPatients = localStorage.getItem('kineora-patients');
+
 
     return savedPatients
       ? JSON.parse(savedPatients)
@@ -150,6 +153,7 @@ if (editingPatient) {
         className="icon-action"
         type="button"
         aria-label="Patient advice"
+        onClick={() => setTipPatient(patient)}
       >
         <Lightbulb size={15} />
       </button>
@@ -167,6 +171,14 @@ if (editingPatient) {
             }}
           />
       )}
+
+      {tipPatient && (
+  <PatientTipsPage
+    patient={tipPatient}
+    onClose={() => setTipPatient(null)}
+  />
+)}
+
     </section>
   );
 }

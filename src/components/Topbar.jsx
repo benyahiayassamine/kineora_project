@@ -2,7 +2,7 @@
 import LanguageThemePicker from './LanguageThemePicker.jsx';
 import { currentDoctor } from '../data/mockData.js';
 import kineoraLogo from '../assets/kineora-logo.png';
-import { LogOut } from 'lucide-react';
+import { LogOut, Bell, Bot, MessageCircle } from 'lucide-react';
 
 export default function Topbar({
   onLogout,
@@ -42,6 +42,23 @@ export default function Topbar({
         >
           {t.appointments}
         </button>
+        <button
+          type="button"
+          className={`topbar-chat-link ${currentPage === 'chat' ? 'active' : ''}`}
+          onClick={() => onNavigate('chat')}
+        >
+          <MessageCircle size={12} />
+          <span>{t.patientsChat}</span>
+        </button>
+
+        <button
+          type="button"
+          className={`topbar-static-item ${currentPage === 'assistant' ? 'active' : ''}`}
+          onClick={() => onNavigate('assistant')}
+        >
+          <Bot size={12} />
+          <span>{t.aiAssistant}</span>
+        </button>
 
         <button type="button" className={currentPage === 'reports' ? 'active' : ''} onClick={() => onNavigate('reports')}>{t.reports}</button>
         <button
@@ -54,6 +71,10 @@ export default function Topbar({
       </nav>
 
       <div className="topbar-actions">
+        <button className="topbar-notifications" type="button" aria-label="Notifications">
+           <Bell size={14} />
+           <span />
+        </button>
         <LanguageThemePicker />
 
         <span className="doctor-name">
