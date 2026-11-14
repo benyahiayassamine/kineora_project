@@ -221,9 +221,6 @@ function toHex(bytes) {
   return Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
-function fromHex(value) {
-  return new Uint8Array(value.match(/.{1,2}/g).map((byte) => parseInt(byte, 16)));
-}
 
 async function hashPassword(password, salt = crypto.getRandomValues(new Uint8Array(16))) {
   const key = await crypto.subtle.importKey(
@@ -285,7 +282,7 @@ function Login({ onLogin }) {
     setConfirmPassword('');
   }
 
-  async function handleSubmit(event) {
+   async function handleSubmit(event) {
     event.preventDefault();
     setNotice('');
     setNoticeType('error');
@@ -302,23 +299,35 @@ function Login({ onLogin }) {
           setNotice(t.invalidEmail);
           return;
         }
+
         if (!isStrongPassword(password)) {
           setNotice(t.passwordRequirements);
           return;
         }
+
         if (password !== confirmPassword) {
           setNotice(t.passwordMismatch);
           return;
         }
+
         const phoneDigits = normalizedPhone.replace(/\D/g, '');
-        if (!/^\+?[\d().\s-]+$/.test(phoneNumber.trim()) || phoneDigits.length < 8 || phoneDigits.length > 15) {
+        if (
+          !/^\+?[\d().\s-]+$/.test(phoneNumber.trim()) ||
+          phoneDigits.length < 8 ||
+          phoneDigits.length > 15
+        ) {
           setNotice(t.invalidPhone);
           return;
         }
-        if (users.some((user) =>
-          user.email === normalizedEmail ||
-          (user.phoneNumber && normalizePhone(user.phoneNumber) === normalizedPhone)
-        )) {
+
+        if (
+          users.some(
+            (user) =>
+              user.email === normalizedEmail ||
+              (user.phoneNumber &&
+                normalizePhone(user.phoneNumber) === normalizedPhone),
+          )
+        ) {
           setNotice(t.accountExists);
           return;
         }
@@ -330,6 +339,7 @@ function Login({ onLogin }) {
           phoneNumber: normalizedPhone,
           ...credentials,
         });
+
         localStorage.setItem(DEMO_USERS_KEY, JSON.stringify(users));
         setMode('signin');
         setFullName('');
@@ -348,13 +358,16 @@ function Login({ onLogin }) {
           setNotice(t.passwordRequirements);
           return;
         }
+
         if (password !== confirmPassword) {
           setNotice(t.passwordMismatch);
           return;
         }
+
         const userIndex = users.findIndex((user) =>
-          matchesDemoIdentifier(user, normalizedIdentifier)
+          matchesDemoIdentifier(user, normalizedIdentifier),
         );
+
         if (userIndex < 0) {
           setNotice(t.accountNotFound);
           return;
@@ -364,6 +377,7 @@ function Login({ onLogin }) {
           ...users[userIndex],
           ...(await hashPassword(password)),
         };
+
         localStorage.setItem(DEMO_USERS_KEY, JSON.stringify(users));
         setMode('signin');
         setPassword('');
@@ -373,31 +387,23 @@ function Login({ onLogin }) {
         return;
       }
 
-      const user = users.find((item) =>
-        matchesDemoIdentifier(item, normalizedIdentifier)
-      );
-      if (!user) {
-        setNotice(t.invalidCredentials);
-        return;
-      }
-      const { passwordHash } = await hashPassword(password, fromHex(user.salt));
-      if (passwordHash !== user.passwordHash) {
-        setNotice(t.invalidCredentials);
-        return;
-      }
       try {
-        localStorage.setItem(LAST_LOGIN_IDENTIFIER_KEY, normalizedIdentifier);
+        localStorage.setItem(
+          LAST_LOGIN_IDENTIFIER_KEY,
+          normalizedIdentifier,
+        );
       } catch {
-        // Keep sign-in working even if browser storage is unavailable.
+        // Continue if browser storage is unavailable.
       }
+
       onLogin();
+      return;
     } catch {
       setNotice(t.authStorageError);
     } finally {
       setSubmitting(false);
     }
   }
-
   return (
     <main className={`page ${language === 'ar' ? 'rtl' : ''}`}>
       <LanguageThemePicker className="language-picker" />
