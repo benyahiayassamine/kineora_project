@@ -10,6 +10,18 @@ import PatientTipsPage from './PatientTipsPage.jsx';
 
 export default function PatientsPage() {
   const [patientPlans, setPatientPlans] = useState({});
+
+  const [patientTips, setPatientTips] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('kineora-patient-tips')) || [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem('kineora-patient-tips', JSON.stringify(patientTips));
+  }, [patientTips]);
   const [tipPatient, setTipPatient] = useState(null);
   const { t } = usePreferences();
   const [search, setSearch] = useState('');
@@ -173,11 +185,23 @@ if (editingPatient) {
       )}
 
       {tipPatient && (
-  <PatientTipsPage
-    patient={tipPatient}
-    onClose={() => setTipPatient(null)}
-  />
-)}
+        <PatientTipsPage
+          patient={tipPatient}
+          onClose={() => setTipPatient(null)}
+          onSend={({ patient, tip, date }) => {
+            setPatientTips((current) => [
+              ...current,
+              {
+                id: `${patient.id}-${Date.now()}`,
+                patientId: patient.id,
+                patientName: patient.name,
+                tip,
+                date,
+              },
+            ]);
+          }}
+        />
+      )}
 
     </section>
   );

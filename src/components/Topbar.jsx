@@ -1,15 +1,41 @@
-﻿import usePreferences from '../hooks/usePreferences.js';
-import LanguageThemePicker from './LanguageThemePicker.jsx';
+﻿import { useState } from 'react';
+import usePreferences from '../hooks/usePreferences.js';
 import { currentDoctor } from '../data/mockData.js';
 import kineoraLogo from '../assets/kineora-logo.png';
-import { LogOut, Bell, Bot, MessageCircle } from 'lucide-react';
+import {
+  LogOut,
+  Bell,
+  Bot,
+  MessageCircle,
+  UserRound,
+  Settings,
+} from 'lucide-react';
 
 export default function Topbar({
   onLogout,
   currentPage = 'home',
   onNavigate = () => {},
 }) {
-  const { t } = usePreferences();
+  const { t, language } = usePreferences();
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+
+  const labels = {
+    en: { profile: 'Profile', settings: 'Settings', logout: 'Logout' },
+    fr: { profile: 'Profil', settings: 'Paramètres', logout: 'Déconnexion' },
+    ar: { profile: 'الملف الشخصي', settings: 'الإعدادات', logout: 'تسجيل الخروج' },
+  };
+
+  const menuLabels = labels[language] || labels.en;
+
+  const navigateFromMenu = (page) => {
+    setProfileMenuOpen(false);
+    onNavigate(page);
+  };
+
+  const handleLogout = () => {
+    setProfileMenuOpen(false);
+    onLogout();
+  };
 
   return (
     <header className="topbar">
@@ -42,6 +68,7 @@ export default function Topbar({
         >
           {t.appointments}
         </button>
+
         <button
           type="button"
           className={`topbar-chat-link ${currentPage === 'chat' ? 'active' : ''}`}
@@ -60,38 +87,69 @@ export default function Topbar({
           <span>{t.aiAssistant}</span>
         </button>
 
-        <button type="button" className={currentPage === 'reports' ? 'active' : ''} onClick={() => onNavigate('reports')}>{t.reports}</button>
         <button
-  type="button"
-  className={currentPage === 'settings' ? 'active' : ''}
-  onClick={() => onNavigate('settings')}
->
-  Settings
-</button>
+          type="button"
+          className={currentPage === 'reports' ? 'active' : ''}
+          onClick={() => onNavigate('reports')}
+        >
+          {t.reports}
+        </button>
       </nav>
 
       <div className="topbar-actions">
-        <button className="topbar-notifications" type="button" aria-label="Notifications">
-           <Bell size={14} />
-           <span />
-        </button>
-        <LanguageThemePicker />
-
-        <span className="doctor-name">
-          <span className="doctor-icon" aria-hidden="true">
-            🧑‍⚕️
-          </span>
-          <bdi>{currentDoctor.name}</bdi>
-        </span>
-
         <button
+          className="topbar-notifications"
           type="button"
-          className="logout-button"
-          onClick={onLogout}
+          aria-label="Notifications"
         >
-          <LogOut size={14} />
-          {t.logout || 'Logout'}
+          <Bell size={14} />
+          <span />
         </button>
+
+        <div className="topbar-profile">
+          <button
+            type="button"
+            className="topbar-profile-trigger"
+            onClick={() => setProfileMenuOpen((open) => !open)}
+            aria-label={menuLabels.profile}
+            aria-expanded={profileMenuOpen}
+            aria-haspopup="true"
+          >
+            <UserRound size={18} />
+            <bdi>{currentDoctor.name}</bdi>
+          </button>
+
+          {profileMenuOpen && (
+            <div className="topbar-profile-dropdown">
+              <button
+                type="button"
+                className={currentPage === 'profile' ? 'active' : ''}
+                onClick={() => navigateFromMenu('profile')}
+              >
+                <UserRound size={16} />
+                <span>{menuLabels.profile}</span>
+              </button>
+
+              <button
+                type="button"
+                className={currentPage === 'settings' ? 'active' : ''}
+                onClick={() => navigateFromMenu('settings')}
+              >
+                <Settings size={16} />
+                <span>{menuLabels.settings}</span>
+              </button>
+
+              <button
+                type="button"
+                className="topbar-dropdown-logout"
+                onClick={handleLogout}
+              >
+                <LogOut size={16} />
+                <span>{menuLabels.logout}</span>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

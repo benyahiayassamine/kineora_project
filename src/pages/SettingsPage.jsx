@@ -1,148 +1,183 @@
-import { useState } from 'react';
-import { useDoctorProfile } from '../hooks/useDoctorProfile';
-
+﻿import usePreferences from '../hooks/usePreferences.js';
+import {
+  Sun,
+  Moon,
+  Languages,
+  Check,
+  Palette,
+  Globe,
+} from 'lucide-react';
 
 function SettingsPage() {
-  const { doctor, updateDoctor } = useDoctorProfile();
+  const { language, setLanguage, darkMode, toggleDarkMode } = usePreferences();
 
-  const [formData, setFormData] = useState({
-    name: doctor.name || '',
-    specialty: doctor.specialty || '',
-    email: doctor.email || '',
-    hospital: doctor.hospital || '',
-    phone: doctor.phone || '',
-    address: doctor.address || '',
-    licenseNumber: doctor.licenseNumber || '',
-    bio: doctor.bio || '',
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData((previous) => ({
-      ...previous,
-      [name]: value,
-    }));
+  const content = {
+    en: {
+      title: 'Settings',
+      subtitle: 'Personalize your workspace and make KINEORA yours.',
+      appearance: 'Appearance',
+      appearanceDesc: 'Choose the visual theme that feels right for you.',
+      light: 'Light mode',
+      lightDesc: 'A clean and bright interface.',
+      dark: 'Dark mode',
+      darkDesc: 'A comfortable interface for low-light environments.',
+      language: 'Language',
+      languageDesc: 'Choose the language used throughout your workspace.',
+      active: 'Active',
+      preferences: 'YOUR PREFERENCES',
+      theme: 'Display theme',
+      languageSetting: 'Interface language',
+    },
+    fr: {
+      title: 'Paramètres',
+      subtitle: 'Personnalisez votre espace de travail KINEORA.',
+      appearance: 'Apparence',
+      appearanceDesc: 'Choisissez le thème qui vous convient.',
+      light: 'Mode clair',
+      lightDesc: 'Une interface lumineuse et épurée.',
+      dark: 'Mode sombre',
+      darkDesc: 'Une interface confortable dans un environnement sombre.',
+      language: 'Langue',
+      languageDesc: 'Choisissez la langue de votre espace de travail.',
+      active: 'Actif',
+      preferences: 'VOS PRÉFÉRENCES',
+      theme: 'Thème d’affichage',
+      languageSetting: 'Langue de l’interface',
+    },
+    ar: {
+      title: 'الإعدادات',
+      subtitle: 'خصص مساحة عملك واجعل KINEORA تناسب تفضيلاتك.',
+      appearance: 'المظهر',
+      appearanceDesc: 'اختر المظهر الذي يناسبك.',
+      light: 'الوضع النهاري',
+      lightDesc: 'واجهة مشرقة ومريحة للعين.',
+      dark: 'الوضع الليلي',
+      darkDesc: 'واجهة مريحة في الإضاءة المنخفضة.',
+      language: 'اللغة',
+      languageDesc: 'اختر لغة واجهة الاستخدام.',
+      active: 'مفعّل',
+      preferences: 'تفضيلاتك',
+      theme: 'مظهر العرض',
+      languageSetting: 'لغة الواجهة',
+    },
   };
 
-  const handleSave = (event) => {
-    event.preventDefault();
-    updateDoctor(formData);
-  };
+  const labels = content[language] || content.en;
 
-   return (
-    <main className="settings-page">
-      <div className="settings-header">
-        <div>
-          <h1>Doctor Settings</h1>
-          <p>Manage your professional profile and personal information.</p>
+  const languages = [
+    { code: 'en', name: 'English', native: 'English', short: 'EN' },
+    { code: 'fr', name: 'French', native: 'Français', short: 'FR' },
+    { code: 'ar', name: 'Arabic', native: 'العربية', short: 'AR' },
+  ];
+
+  return (
+    <main className="settings-page preferences-settings-page">
+      <header className="preferences-page-header">
+        <div className="preferences-heading-icon">
+          <Palette size={25} />
         </div>
-      </div>
+        <div>
+          <span className="preferences-eyebrow">{labels.preferences}</span>
+          <h1>{labels.title}</h1>
+          <p>{labels.subtitle}</p>
+        </div>
+      </header>
 
-      <form onSubmit={handleSave} className="settings-form">
-        <section className="settings-card">
-          <h2>Professional Information</h2>
-
-          <div className="settings-grid">
-            <label>
-              Full Name
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </label>
-
-            <label>
-              Specialty
-              <input
-                type="text"
-                name="specialty"
-                value={formData.specialty}
-                onChange={handleChange}
-              />
-            </label>
-
-            <label>
-              Professional License Number
-              <input
-                type="text"
-                name="licenseNumber"
-                value={formData.licenseNumber}
-                onChange={handleChange}
-              />
-            </label>
-
-            <label>
-              Hospital / Clinic
-              <input
-                type="text"
-                name="hospital"
-                value={formData.hospital}
-                onChange={handleChange}
-              />
-            </label>
+      <section className="preferences-section">
+        <div className="preferences-section-heading">
+          <div className="preferences-section-icon">
+            <Sun size={20} />
           </div>
-        </section>
-
-        <section className="settings-card">
-          <h2>Contact Information</h2>
-
-          <div className="settings-grid">
-            <label>
-              Email
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </label>
-
-            <label>
-              Phone Number
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-            </label>
-
-            <label className="settings-full-width">
-              Address
-              <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-              />
-            </label>
+          <div>
+            <h2>{labels.appearance}</h2>
+            <p>{labels.appearanceDesc}</p>
           </div>
-        </section>
+        </div>
 
-        <section className="settings-card">
-          <h2>About Me</h2>
+        <div className="preferences-options-grid">
+          <button
+            type="button"
+            className={`preferences-option ${!darkMode ? 'is-selected' : ''}`}
+            onClick={() => {
+              if (darkMode) toggleDarkMode();
+            }}
+            aria-pressed={!darkMode}
+          >
+            <span className="preferences-option-icon light-icon">
+              <Sun size={25} />
+            </span>
+            <span className="preferences-option-content">
+              <strong>{labels.light}</strong>
+              <small>{labels.lightDesc}</small>
+            </span>
+            <span className="preferences-option-check">
+              {!darkMode && <Check size={16} />}
+            </span>
+          </button>
 
-          <label>
-            Professional Biography
-            <textarea
-              name="bio"
-              value={formData.bio}
-              onChange={handleChange}
-              rows={4}
-              placeholder="Write a short professional biography..."
-            />
-          </label>
-        </section>
-
-        <div className="settings-actions">
-          <button type="submit" className="settings-save">
-            Save Changes
+          <button
+            type="button"
+            className={`preferences-option ${darkMode ? 'is-selected' : ''}`}
+            onClick={() => {
+              if (!darkMode) toggleDarkMode();
+            }}
+            aria-pressed={darkMode}
+          >
+            <span className="preferences-option-icon dark-icon">
+              <Moon size={25} />
+            </span>
+            <span className="preferences-option-content">
+              <strong>{labels.dark}</strong>
+              <small>{labels.darkDesc}</small>
+            </span>
+            <span className="preferences-option-check">
+              {darkMode && <Check size={16} />}
+            </span>
           </button>
         </div>
-      </form>
+      </section>
+
+      <section className="preferences-section">
+        <div className="preferences-section-heading">
+          <div className="preferences-section-icon">
+            <Languages size={20} />
+          </div>
+          <div>
+            <h2>{labels.language}</h2>
+            <p>{labels.languageDesc}</p>
+          </div>
+        </div>
+
+        <div className="preferences-language-list">
+          {languages.map((item) => (
+            <button
+              type="button"
+              key={item.code}
+              className={`preferences-language-option ${
+                language === item.code ? 'is-selected' : ''
+              }`}
+              onClick={() => setLanguage(item.code)}
+              aria-pressed={language === item.code}
+            >
+              <span className="preferences-language-code">{item.short}</span>
+              <span className="preferences-language-name">
+                <strong>{item.native}</strong>
+                <small>{item.name}</small>
+              </span>
+              <span className="preferences-language-check">
+                {language === item.code && <Check size={17} />}
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <div className="preferences-footer">
+        <Globe size={15} />
+        <span>{labels.theme} · {darkMode ? labels.dark : labels.light}</span>
+        <span className="preferences-footer-separator">|</span>
+        <span>{labels.languageSetting} · {language.toUpperCase()}</span>
+      </div>
     </main>
   );
 }

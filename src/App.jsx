@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import {
   Activity,
   Bell,
@@ -28,6 +28,7 @@ import AIAssistantPage from './pages/AIAssistantPage.jsx';
 import PatientDetailsPage from './pages/PatientDetailsPage.jsx';
 import ReportsPage from './pages/ReportsPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 
 function Dashboard({ currentPage, onNavigate, onLogout }) {  const { t, language } = usePreferences();
   const [selectedPatient, setSelectedPatient] = useState(null);
@@ -48,7 +49,9 @@ function Dashboard({ currentPage, onNavigate, onLogout }) {  const { t, language
     patient={selectedPatient}
     onBack={() => setSelectedPatient(null)}
   />
-) : currentPage === 'settings' ? (
+) : currentPage === 'profile' ? (
+        <ProfilePage />
+      ) : currentPage === 'settings' ? (
         <SettingsPage />
       ) : currentPage === 'reports' ? (
         <ReportsPage />

@@ -1,32 +1,56 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Lightbulb, Send, X } from 'lucide-react';
-
+import usePreferences from '../hooks/usePreferences.js';
 
 export default function PatientTipsPage({ patient, onClose, onSend }) {
-  const [tip, setTip] = useState('');
+  const { t, dir } = usePreferences();
+
+  const conditionKey = patient?.conditionKey;
+
+  const suggestionKeys = {
+    forearmFracture: 'tipForearmFracture',
+    clavicleFracture: 'tipClavicleFracture',
+    hipFracture: 'tipHipFracture',
+    wristFracture: 'tipWristFracture',
+  };
+
+  const suggestionKey = suggestionKeys[conditionKey] || 'tipGeneral';
+  const suggestedTip = t[suggestionKey] || t.tipGeneral || '';
+
+  const [tip, setTip] = useState(suggestedTip);
   const [notice, setNotice] = useState('');
 
   if (!patient) return null;
 
-  const condition = patient.condition || patient.conditionKey || 'Patient';
+  const condition = conditionKey
+    ? (t[conditionKey] || conditionKey)
+    : (patient.condition || 'Patient');
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (!tip.trim()) return;
+    const cleanTip = tip.trim();
+    if (!cleanTip) return;
 
     if (onSend) {
-      onSend({ patient, tip: tip.trim() });
-      setNotice('Tip sent.');
-    } else {
-      setNotice('Tip ready. Connect a messaging service to deliver it.');
+      onSend({
+        patient,
+        tip: cleanTip,
+        date: new Date().toISOString(),
+      });
+
+      setNotice(t.patientTipsSaved);
     }
   }
 
   return (
-    <div className="tips-overlay" onMouseDown={(event) => {
-      if (event.target === event.currentTarget) onClose();
-    }}>
+    <div
+      className="tips-overlay"
+      dir={dir}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
       <section
         className="tips-card"
         role="dialog"
@@ -34,10 +58,14 @@ export default function PatientTipsPage({ patient, onClose, onSend }) {
         aria-labelledby="tips-title"
       >
         <header className="tips-header">
-          <span className="tips-icon"><Lightbulb size={20} /></span>
+          <span className="tips-icon">
+            <Lightbulb size={20} />
+          </span>
 
           <div>
-            <h2 id="tips-title">{patient.name} — Tips</h2>
+            <h2 id="tips-title">
+              {patient.name} — {t.patientTipsTitle}
+            </h2>
             <small>{condition}</small>
           </div>
 
@@ -45,24 +73,29 @@ export default function PatientTipsPage({ patient, onClose, onSend }) {
             className="tips-close"
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label={t.patientTipsClose}
+            title={t.patientTipsClose}
           >
             <X size={16} />
           </button>
         </header>
 
         <div className="tips-suggestion">
-          <span className="tips-suggestion-icon"><Lightbulb size={16} /></span>
+          <span className="tips-suggestion-icon">
+            <Lightbulb size={16} />
+          </span>
+
           <div>
-            <p>Have {patient.name} exercise in the morning before fatigue.</p>
-            <time>{new Date().toISOString().slice(0, 10)}</time>
+            <strong>{t.patientTipsSuggestionTitle}</strong>
+            <p>{suggestedTip}</p>
           </div>
         </div>
 
         <form className="tips-form" onSubmit={handleSubmit}>
           <label className="tips-sr-only" htmlFor="patient-tip">
-            Write a tip for the patient
+            {t.patientTipsPlaceholder}
           </label>
+
           <textarea
             id="patient-tip"
             value={tip}
@@ -70,15 +103,23 @@ export default function PatientTipsPage({ patient, onClose, onSend }) {
               setTip(event.target.value);
               setNotice('');
             }}
-            placeholder="Write a tip for the patient..."
-            rows={3}
+            placeholder={t.patientTipsPlaceholder}
+            rows={4}
           />
 
-          {notice && <p className="tips-notice" role="status">{notice}</p>}
+          {notice && (
+            <p className="tips-notice" role="status">
+              {notice}
+            </p>
+          )}
 
-          <button className="tips-send" type="submit" disabled={!tip.trim()}>
+          <button
+            className="tips-send"
+            type="submit"
+            disabled={!tip.trim()}
+          >
             <Send size={14} />
-            Send tip
+            {t.patientTipsSave}
           </button>
         </form>
       </section>

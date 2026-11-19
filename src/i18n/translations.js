@@ -1,6 +1,12 @@
 
 export const translations = {
   en: {
+    // AI chat history
+    aiChatHistory: 'Chat History',
+    aiNewChat: 'New Chat',
+    aiNoHistory: 'No conversations yet',
+    aiDeleteChat: 'Delete conversation',
+
     // Brand
     brandName: 'KINEORA',
     tagline: 'Rehab • Track • Progress',
@@ -124,7 +130,19 @@ export const translations = {
 
     // Patients
     addPatient: 'Add patient',
-    searchPatient: 'Search patient',
+    searchPatient: 'Search patient',
+    patientTipsTitle: 'Patient Tips',
+    patientTipsSubtitle: 'Advice for {name}',
+    patientTipsSuggestionTitle: 'Suggested advice',
+    patientTipsPlaceholder: 'Write a tip for the patient...',
+    patientTipsSave: 'Save tip',
+    patientTipsSaved: 'Tip saved successfully.',
+    patientTipsClose: 'Close',
+    tipForearmFracture: 'Follow your prescribed rehabilitation plan and avoid lifting heavy objects with the injured arm.',
+    tipClavicleFracture: 'Avoid heavy lifting and follow the prescribed limits for shoulder movement.',
+    tipHipFracture: 'Follow your prescribed mobility plan and use walking assistance as recommended.',
+    tipWristFracture: 'Avoid putting pressure on the injured wrist and follow your prescribed exercises.',
+    tipGeneral: 'Follow your rehabilitation plan and contact your healthcare provider if you experience unusual pain.',
     exportPdf: 'Export PDF',
 
     // Appointments
@@ -182,6 +200,11 @@ sun: 'Sun',
   },
 
   fr: {
+    // AI chat history
+    aiChatHistory: 'Historique des discussions',
+    aiNewChat: 'Nouvelle discussion',
+    aiNoHistory: 'Aucune conversation pour le moment',
+    aiDeleteChat: 'Supprimer la conversation',
     // Marque
     brandName: 'KINEORA',
     tagline: 'Rééducation • Suivi • Progrès',
@@ -305,7 +328,19 @@ sun: 'Sun',
 
     // Patients
     addPatient: 'Ajouter un patient',
-    searchPatient: 'Rechercher un patient',
+    searchPatient: 'Rechercher un patient',
+    patientTipsTitle: 'Conseils au patient',
+    patientTipsSubtitle: 'Conseils pour {name}',
+    patientTipsSuggestionTitle: 'Conseil suggéré',
+    patientTipsPlaceholder: 'Écrire un conseil pour le patient...',
+    patientTipsSave: 'Enregistrer le conseil',
+    patientTipsSaved: 'Conseil enregistré avec succès.',
+    patientTipsClose: 'Fermer',
+    tipForearmFracture: 'Suivez votre programme de rééducation et évitez de porter des objets lourds avec le bras blessé.',
+    tipClavicleFracture: 'Évitez de porter des charges lourdes et respectez les limites de mouvement de l’épaule prescrites.',
+    tipHipFracture: 'Suivez votre programme de mobilité et utilisez une aide à la marche selon les recommandations.',
+    tipWristFracture: 'Évitez d’exercer une pression sur le poignet blessé et suivez les exercices prescrits.',
+    tipGeneral: 'Respectez votre programme de rééducation et contactez votre professionnel de santé en cas de douleur inhabituelle.',
     exportPdf: 'Exporter en PDF',
 
     // Rendez-vous
@@ -363,6 +398,11 @@ sun: 'Dim',
   },
 
   ar: {
+    // AI chat history
+    aiChatHistory: 'سجل المحادثات',
+    aiNewChat: 'محادثة جديدة',
+    aiNoHistory: 'لا توجد محادثات بعد',
+    aiDeleteChat: 'حذف المحادثة',
     // العلامة التجارية
     brandName: 'KINEORA',
     tagline: 'تأهيل • متابعة • تقدم',
@@ -486,7 +526,19 @@ sun: 'Dim',
 
     // المرضى
     addPatient: 'إضافة مريض',
-    searchPatient: 'ابحث عن مريض',
+    searchPatient: 'ابحث عن مريض',
+    patientTipsTitle: 'نصائح للمريض',
+    patientTipsSubtitle: 'نصائح خاصة بـ {name}',
+    patientTipsSuggestionTitle: 'نصيحة مقترحة',
+    patientTipsPlaceholder: 'اكتب نصيحة للمريض...',
+    patientTipsSave: 'حفظ النصيحة',
+    patientTipsSaved: 'تم حفظ النصيحة بنجاح.',
+    patientTipsClose: 'إغلاق',
+    tipForearmFracture: 'التزم ببرنامج إعادة التأهيل الموصوف وتجنب حمل الأشياء الثقيلة بالذراع المصابة.',
+    tipClavicleFracture: 'تجنب حمل الأشياء الثقيلة واحترم حدود حركة الكتف التي حددها الطبيب.',
+    tipHipFracture: 'التزم ببرنامج الحركة الموصوف واستعمل وسيلة مساعدة للمشي حسب التوصيات.',
+    tipWristFracture: 'تجنب الضغط على المعصم المصاب والتزم بالتمارين الموصوفة.',
+    tipGeneral: 'التزم ببرنامج إعادة التأهيل واستشر مختصاً صحياً إذا شعرت بألم غير معتاد.',
     exportPdf: 'تصدير PDF',
 
     // المواعيد
