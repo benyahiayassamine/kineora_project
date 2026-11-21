@@ -16,7 +16,7 @@ import {
   UserRound,
   
 } from 'lucide-react';
-import Topbar from './components/Topbar.jsx';
+import Sidebar from './components/Sidebar.jsx';
 import Appointments from './pages/Appointments.jsx';
 import LanguageThemePicker from './components/LanguageThemePicker.jsx';
 import usePreferences from './hooks/usePreferences.js';
@@ -35,7 +35,7 @@ function Dashboard({ currentPage, onNavigate, onLogout }) {  const { t, language
 
   return (
 <main id="home" className={`dashboard ${language === 'ar' ? 'rtl' : ''}`}>
-  <Topbar
+  <Sidebar
     onLogout={onLogout}
     currentPage={currentPage}
     onNavigate={(page) => {

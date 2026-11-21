@@ -753,6 +753,7 @@ html[dir="rtl"] .date-box strong {
 }
 
 .dashboard > .topbar .topbar-nav {
+  order: 2;
   display: flex;
   flex: 1 1 auto;
   width: auto;
@@ -4275,6 +4276,83 @@ html[dir="rtl"] .adherence-info strong {
     padding: 0 11px;
   }
 }
+
+.dashboard > .topbar .topbar-notification-wrap {
+  position: relative;
+}
+
+.dashboard > .topbar .topbar-notification-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  inset-inline-end: 0;
+  z-index: 1200;
+  width: 230px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 10px 28px rgba(37, 42, 61, 0.16);
+}
+
+.topbar-notification-panel h2 {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.topbar-notification-panel p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.topbar-notification-panel strong {
+  color: var(--royal);
+}
+
+.dashboard > .topbar .topbar-profile {
+  gap: 4px;
+}
+
+.dashboard > .topbar .sidebar-logout {
+  position: absolute;
+  inset-inline: 14px;
+  inset-block-end: 16px;
+  display: flex;
+  width: auto;
+  min-height: 44px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin: 0;
+  padding: 0 13px;
+  border: 1px solid #f2c5c8;
+  border-radius: 12px;
+  background: #fff0f1;
+  color: #c74752;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dashboard > .topbar .sidebar-logout:hover {
+  background: #ffe1e4;
+  color: #b83240;
+}
+
+@media (max-width: 400px) {
+  .dashboard > .topbar .sidebar-logout {
+    justify-content: center;
+    padding: 0;
+  }
+}
 .dashboard > .topbar .topbar-actions .logout-button {
   border: 1px solid #f2c5c8;
   background: #fff0f1;
@@ -4284,6 +4362,320 @@ html[dir="rtl"] .adherence-info strong {
 .dashboard > .topbar .topbar-actions .logout-button:hover {
   background: #ffe1e4;
   color: #b83240;
+}
+
+/* Dashboard navigation sidebar */
+.dashboard {
+  min-height: 100vh;
+  padding-inline-start: 264px;
+  padding-inline-end: 16px;
+  padding-top: 88px;
+}
+
+.dashboard > .topbar.dashboard-sidebar {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 0;
+  z-index: 1100;
+  display: flex !important;
+  width: 244px;
+  height: 100vh;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+  margin: 0;
+  padding: 24px 14px 16px;
+  overflow: visible;
+  border: 1px solid var(--border);
+  border-radius: 0 18px 18px 0;
+  background: var(--surface);
+  box-shadow: 3px 0 18px rgba(37, 42, 61, 0.08);
+}
+
+html[dir="rtl"] .dashboard > .topbar.dashboard-sidebar {
+  border-radius: 18px 0 0 18px;
+  box-shadow: -3px 0 18px rgba(37, 42, 61, 0.08);
+}
+
+.dashboard-sidebar .topbar-brand {
+  justify-content: flex-start;
+  gap: 8px;
+  min-height: 76px;
+  padding: 0 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-sidebar .topbar-brand .topbar-logo {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  margin: 0;
+  transform: scale(1.9);
+  transform-origin: center;
+}
+
+.dashboard-sidebar .topbar-brand strong {
+  font-size: 16px;
+  letter-spacing: 1.6px;
+  line-height: 1;
+  transform: translateY(-7px);
+}
+
+.dashboard > .topbar .topbar-nav {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 7px;
+  margin: 0;
+  padding: 0 0 60px;
+  overflow: auto;
+  border-radius: 0;
+  background: transparent;
+}
+
+.dashboard > .topbar .topbar-nav button {
+  display: flex;
+  width: 100%;
+  min-height: 44px !important;
+  height: auto;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 0 13px !important;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  text-align: start;
+  white-space: nowrap;
+  transform: none !important;
+}
+
+.dashboard > .topbar .topbar-nav button svg {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--royal);
+}
+
+.dashboard > .topbar .topbar-nav button:hover,
+.dashboard > .topbar .topbar-nav button.active {
+  background: var(--surface2);
+  color: var(--royal);
+}
+
+.dashboard > .topbar .topbar-nav button.active {
+  font-weight: 700;
+  box-shadow: inset 3px 0 var(--royal);
+}
+
+html[dir="rtl"] .dashboard > .topbar .topbar-nav button.active {
+  box-shadow: inset -3px 0 var(--royal);
+}
+
+.dashboard > .topbar .topbar-actions {
+  position: fixed;
+  inset-block-start: 12px;
+  inset-inline-start: 260px;
+  inset-inline-end: 16px;
+  z-index: 1099;
+  order: 1;
+  display: flex;
+  width: auto;
+  min-height: 58px;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.dashboard > .topbar .topbar-notifications {
+  position: relative;
+  display: flex;
+  width: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface2);
+  color: var(--royal);
+}
+
+.dashboard > .topbar .topbar-notifications > span {
+  position: absolute;
+  inset-block-start: 7px;
+  inset-inline-end: 7px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: #c74752;
+}
+
+.dashboard > .topbar .topbar-notifications svg {
+  width: 18px;
+  height: 18px;
+}
+
+.dashboard > .topbar .topbar-profile,
+.dashboard > .topbar .topbar-profile-trigger {
+  width: auto;
+}
+
+.dashboard > .topbar .topbar-profile-trigger {
+  min-height: 44px;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.dashboard > .topbar .topbar-profile-trigger bdi {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard > .topbar .topbar-profile-dropdown {
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: calc(100% + 10px);
+}
+
+html[dir="rtl"] .dashboard > .topbar .topbar-profile-dropdown {
+  right: calc(100% + 10px);
+  left: auto;
+}
+
+@media (max-width: 760px) {
+  .dashboard {
+    padding-inline-start: 94px;
+    padding-inline-end: 12px;
+    padding-top: 82px;
+  }
+
+  .dashboard > .topbar.dashboard-sidebar {
+    width: 76px;
+    gap: 16px;
+    padding: 14px 8px;
+  }
+
+  .dashboard > .topbar .sidebar-logout {
+    inset-inline: 8px;
+    inset-block-end: 14px;
+  }
+
+  .dashboard-sidebar .topbar-brand {
+    min-height: 56px;
+    padding-bottom: 8px;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .dashboard-sidebar .topbar-brand .topbar-logo {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+    transform: scale(1.8);
+  }
+
+  .dashboard-sidebar .topbar-brand strong,
+  .dashboard > .topbar .topbar-nav button span,
+  .dashboard > .topbar .topbar-profile-trigger bdi {
+    display: none;
+  }
+
+  .dashboard > .topbar .topbar-nav button,
+  .dashboard > .topbar .sidebar-logout,
+  .dashboard > .topbar .topbar-notifications,
+  .dashboard > .topbar .topbar-profile-trigger {
+    min-height: 44px !important;
+    justify-content: center;
+    gap: 0;
+    padding: 0 !important;
+  }
+
+  .dashboard > .topbar .topbar-nav button.active {
+    box-shadow: inset 0 -3px var(--royal);
+  }
+
+  .dashboard > .topbar .sidebar-logout {
+    justify-content: center;
+    gap: 0;
+    padding: 0 !important;
+  }
+
+  .dashboard > .topbar .sidebar-logout span {
+    display: none;
+  }
+
+  html[dir="rtl"] .dashboard > .topbar .topbar-nav button.active {
+    box-shadow: inset 0 -3px var(--royal);
+  }
+
+  .dashboard > .topbar .topbar-profile-trigger svg,
+  .dashboard > .topbar .topbar-notifications svg {
+    flex: 0 0 18px;
+  }
+
+  .dashboard > .topbar .topbar-actions {
+    inset-inline-start: 88px;
+    inset-inline-end: 12px;
+    min-height: 54px;
+    padding: 6px 9px;
+  }
+
+  .dashboard > .topbar .topbar-profile-trigger bdi {
+    display: inline;
+  }
+
+  .dashboard > .topbar .topbar-profile-dropdown {
+    right: auto;
+    bottom: 0;
+    left: calc(100% + 10px);
+  }
+
+  html[dir="rtl"] .dashboard > .topbar .topbar-profile-dropdown {
+    right: calc(100% + 10px);
+    left: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .dashboard {
+    padding-inline-start: 76px;
+    padding-inline-end: 8px;
+  }
+
+  .dashboard > .topbar .topbar-actions {
+    inset-inline-start: 72px;
+    inset-inline-end: 8px;
+    min-height: 50px;
+    padding: 4px 7px;
+  }
+
+  .dashboard > .topbar.dashboard-sidebar {
+    width: 64px;
+    padding-inline: 6px;
+  }
+
+  .dashboard > .topbar .sidebar-logout {
+    inset-inline: 6px;
+  }
 }
 
 
